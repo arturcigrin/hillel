@@ -1,113 +1,158 @@
-const operation = prompt(
-  `Введите какое математическое действие хотите выполнить: 
-  + - сложение.
-  -  - вычетание.
-  * - умножение.
-  / - деление.
-  ** - возведение в степень.
-  max - найти максимальное число.
-  cos - найти косинус числа.
-  sin - найти синус числа.
-  tan - найти тангенс числа.
- `
-);
+const operation = getOperation();
+let quantityOperands = getQuantityOfOperands();
+const operands = getValueOperands();
+showToScreen(operation);
 
-if (operation === "cos" || operation === "sin" || operation === "tan") {
-  const number = +prompt("Введите число.");
+// Cпрашиваем у пользователя какую операцию он хочет выполнить.
+function getOperation() {
+  let answerUser;
 
-  switch (operation) {
-    case "cos":
-      cosOfNumber(number);
-      break;
-    case "sin":
-      sinOfNumber(number);
-      break;
-    case "tan":
-      tanOfNumber(number);
-  }
-} else {
-  const firstNumber = +prompt("Введите первое число.");
-  const secondNumber = +prompt("Введите второе число.");
+  do {
+    answerUser = prompt(`Введите какое математическое действие вы хотите выплнить:
+    + - сложение.
+    - - вычетание.
+    * - умножение.
+    / - деление.
+    `);
+  } while (!correctValue(answerUser));
 
-  switch (operation) {
+  return answerUser;
+}
+/*
+ Проверяем, что операция который ввел пользователь нам подходит.
+Ecли ввел нужное значение, то функция возвращает его, если нет то undenfiend...
+*/
+function correctValue(value) {
+  switch (value) {
     case "+":
-      additionOfNumbers(firstNumber, secondNumber);
+    case "-":
+    case "*":
+    case "/":
+      return value;
+  }
+}
+// Спрашиваем у пользователя кол-во операндов.
+function getQuantityOfOperands() {
+  let answerUser;
+  do {
+    answerUser = +prompt(`Какое кол-во операндов вы хотите использовать?`);
+    if (answerUser > 1) {
+      return answerUser;
+    }
+  } while (true);
+}
+
+// Cпрашиваем у пользователя каждый операнд.
+function getValueOperands() {
+  const operands = [];
+  do {
+    operand = prompt(`Введите значение ${operands.length + 1}-го операнда`);
+  } while (typeCheckOfNumbers(operand));
+
+  /*
+Проверяем . что вернул в ответе пользователь, и если нужный нам тип то уменьшаем кол-во операндов
+и заносим их в массив.
+P.s Функцию создал здесь т.к. хотел замкнуть массив.
+*/
+  function typeCheckOfNumbers(value) {
+    // Проверяем если пользователь ничего не ввел и нажал OK или Отмена. Т.к. при привединии типов '' и null == 0;
+    switch (value) {
+      case "":
+      case null:
+        return quantityOperands;
+    }
+
+    //   Приводим к числу значение
+    value = Number(value);
+
+    //  Проверяем если это число - уменьшаем кол-во операндов;
+    switch (isNaN(value)) {
+      case true:
+        return quantityOperands;
+    }
+
+    // Проверяем, можно делить на 0 или нет.
+    if (operation === "/" && operands.length > 0 && value === 0) {
+      alert("На 0 делить нельзя! Введите значение >0 || <0");
+      return quantityOperands;
+    }
+
+    operands.push(value);
+
+    return --quantityOperands;
+  }
+
+  return operands;
+}
+
+// Отображаем овтет пользователю
+function showToScreen(action) {
+  switch (action) {
+    case "+":
+      sum(operands);
       break;
     case "-":
-      subtractionOfNumbers(firstNumber, secondNumber);
+      min(operands);
       break;
     case "*":
-      multiplicationOfNumbers(firstNumber, secondNumber);
+      mult(operands);
       break;
     case "/":
-      divisionOfNumbers(firstNumber, secondNumber);
+      div(operands);
       break;
-    case "**":
-      powOfNumbers(firstNumber, secondNumber);
-      break;
-    case "max":
-      maxOfNumbers(firstNumber, secondNumber);
-      break;
-    default:
-      alert("С таким оператором нет действия.");
   }
 }
 
-function additionOfNumbers(a, b) {
-  const result = a + b;
-  alert(`Результат: ${a} + ${b} = ${result}`);
-  return result;
-}
+function sum(values) {
+  let result = values[0];
+  let str = "";
 
-function subtractionOfNumbers(a, b) {
-  const result = a - b;
-  alert(`Результат: ${a} - ${b} = ${result}`);
-  return result;
-}
-
-function multiplicationOfNumbers(a, b) {
-  const result = a * b;
-  alert(`Результат: ${a} * ${b} = ${result}`);
-  return result;
-}
-
-function divisionOfNumbers(a, b) {
-  if (!b) {
-    return alert("На 0 делить нельзя!");
+  for (let i = 1; i < values.length; i++) {
+    result += values[i];
+    str += ` + ${values[i]}`;
   }
-  let result = a / b;
-  result = Number(result.toFixed(3));
 
-  alert(`Результат: ${a} / ${b} = ${result}`);
+  alert(values[0] + `${str} = ${result}`);
   return result;
 }
 
-function powOfNumbers(a, b) {
-  const result = Math.pow(a, b);
-  alert(`Результат: ${a} ** ${b} = ${result}`);
+function min(values) {
+  let result = values[0];
+  let str = "";
+
+  for (let i = 1; i < values.length; i++) {
+    result -= values[i];
+    str += ` - ${values[i]}`;
+  }
+
+  alert(values[0] + `${str} = ${result}`);
   return result;
 }
 
-function maxOfNumbers(a, b) {
-  const result = Math.max(a, b);
-  alert(`Максимальное число: ${result}`);
+function mult(values) {
+  let result = values[0];
+  let str = "";
+
+  for (let i = 1; i < values.length; i++) {
+    result *= values[i];
+    str += ` * ${values[i]}`;
+  }
+
+  alert(values[0] + `${str} = ${result}`);
   return result;
 }
 
-function cosOfNumber(a) {
-  const result = Math.cos(a);
-  alert(`Косинус числа ${a} равен ${result}`);
-  return result;
-}
+function div(values) {
+  let result = values[0];
+  let str = "";
 
-function sinOfNumber(a) {
-  const result = Math.sin(a);
-  alert(`Синус числа ${a} равен ${result}`);
-  return result;
-}
+  for (let i = 1; i < values.length; i++) {
+    result /= values[i];
+    str += ` / ${values[i]}`;
+  }
 
-function tanOfNumber(a) {
-  const result = Math.tan(a);
-  alert(`Тангенс числа ${a} равен ${result}`);
+  result = Number(result.toFixed(2));
+
+  alert(values[0] + `${str} = ${result}`);
   return result;
 }
