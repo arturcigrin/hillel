@@ -36,7 +36,6 @@ function getQuantityOfOperands() {
     if (answerUser > 1) {
       return answerUser;
     }
-
   } while (true);
 }
 
@@ -62,7 +61,6 @@ function typeCheckOfNumbers(numbersEnteredByUser) {
     .map((number) => +number);
 
   return divisionByZero(operation, arrOperands) && checkQuantityOperands(arrOperands, quantityOperands);
-
 }
 
 function checkQuantityOperands(arrNumbers, quantityNumbers) {
