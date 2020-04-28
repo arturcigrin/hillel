@@ -57,8 +57,8 @@ function typeCheckOfNumbers(numbersEnteredByUser) {
   }
 
   let arrOperands = numbersEnteredByUser.split(" ")
-    .filter((isNumber) => +isNumber || +isNumber === 0)
-    .map((number) => +number);
+    .filter(isNumber => +isNumber || +isNumber === 0)
+    .map(number => +number);
 
   return divisionByZero(operation, arrOperands) && checkQuantityOperands(arrOperands, quantityOperands);
 }
@@ -73,7 +73,7 @@ function checkQuantityOperands(arrNumbers, quantityNumbers) {
 }
 
 function divisionByZero(actionUser, arrayValues) {
-  const zeroValues = arrayValues.slice(1).filter((values) => !values);
+  const zeroValues = arrayValues.slice(1).filter(values => !values);
 
   if (actionUser === "/" && zeroValues.length) {
     alert("На 0 делить нельзя");
@@ -105,7 +105,7 @@ function sum(arrayValues) {
 
   const result = arrayValues.reduce((acum, value) => {
     strValue += ` + ${value}`;
-    return (acum += value);
+    return acum += value;
   });
 
   alert(`${strValue} = ${result}`);
@@ -117,7 +117,7 @@ function sub(arrayValues) {
 
   const result = arrayValues.reduce((acum, value) => {
     strValue += ` - ${value}`;
-    return (acum -= value);
+    return acum -= value;
   });
 
   alert(`${strValue} = ${result}`);
@@ -129,7 +129,7 @@ function mult(arrayValues) {
 
   const result = arrayValues.reduce((acum, value) => {
     strValue += ` * ${value}`;
-    return (acum *= value);
+    return acum *= value;
   });
 
   alert(`${strValue} = ${result}`);
@@ -141,7 +141,7 @@ function div(arrayValues) {
 
   const result = arrayValues.reduce((acum, value) => {
     strValue += ` / ${value}`;
-    return (acum /= value);
+    return acum /= value;
   });
 
   alert(`${strValue} = ${result}`);
