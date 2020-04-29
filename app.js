@@ -1,5 +1,4 @@
 const operation = getOperation();
-let quantityOperands = getQuantityOfOperands();
 const operands = getValueOperands();
 showToScreen(operation);
 
@@ -13,12 +12,12 @@ function getOperation() {
     * - умножение.
     / - деление.
     `);
-  } while (!correctOperation(answerUser));
+  } while (!checkOperation(answerUser));
 
   return answerUser;
 }
 
-function correctOperation(actionSelectedByUser) {
+function checkOperation(actionSelectedByUser) {
   return (
     actionSelectedByUser === "+" ||
     actionSelectedByUser === "-" ||
@@ -27,50 +26,30 @@ function correctOperation(actionSelectedByUser) {
   );
 }
 
-function getQuantityOfOperands() {
-  let answerUser;
-
-  do {
-    answerUser = +prompt(`Какое кол-во операндов вы хотите использовать?`);
-
-    if (answerUser > 1) {
-      return answerUser;
-    }
-  } while (true);
-}
-
 function getValueOperands() {
   let userAnswer, valueOfOperands;
 
   do {
     userAnswer = prompt("Введите  значения через пробел.");
-    valueOfOperands = typeCheckOfNumbers(userAnswer);
+    valueOfOperands = filterAndCheckType(userAnswer);
   } while (!valueOfOperands);
 
   return valueOfOperands;
 }
 
-function typeCheckOfNumbers(numbersEnteredByUser) {
+function filterAndCheckType(numbersEnteredByUser) {
   if (!numbersEnteredByUser) {
     alert("Введите значения");
     return false;
   }
 
   let arrOperands = numbersEnteredByUser.split(" ")
-    .filter(isNumber => +isNumber || +isNumber === 0)
+    .filter(checkNumber => +checkNumber || +checkNumber === 0)
     .map(number => +number);
 
-  return divisionByZero(operation, arrOperands) && checkQuantityOperands(arrOperands, quantityOperands);
+  return divisionByZero(operation, arrOperands);
 }
 
-function checkQuantityOperands(arrNumbers, quantityNumbers) {
-  if (arrNumbers.length !== quantityNumbers) {
-    alert(`Вы ввели неверное количество чисел. Вам нужно ввести ${quantityNumbers}`);
-    return false;
-  }
-
-  return arrNumbers;
-}
 
 function divisionByZero(actionUser, arrayValues) {
   const zeroValues = arrayValues.slice(1).filter(values => !values);
@@ -80,7 +59,7 @@ function divisionByZero(actionUser, arrayValues) {
     return false;
   }
 
-  return true;
+  return arrayValues;
 }
 
 function showToScreen(actionUser) {
