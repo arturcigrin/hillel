@@ -27,8 +27,6 @@ function studentAvarageMarks(studentsList) {
 
     console.log(`${student.name} средняя оценка ${avarageMarkStudent}`);
   });
-
-  return true;
 }
 
 function groupAvarageMark(studentsList) {
@@ -39,7 +37,6 @@ function groupAvarageMark(studentsList) {
   });
 
   const avarageMarkGroup = sumMarksGroup / studentsList.length;
-  console.log(`Cредняя оценка группы: ${avarageMarkGroup}`);
 
-  return avarageMarkGroup;
+  console.log(`Cредняя оценка группы: ${avarageMarkGroup}`);
 }
