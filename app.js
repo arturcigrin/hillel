@@ -1,128 +1,45 @@
-const operation = getOperation();
-const operands = getValueOperands();
-showToScreen(operation);
+const students = [{
+    name: "John Smith",
+    marks: [10, 8, 6, 9, 8, 7],
+  },
+  {
+    name: "John Doe",
+    marks: [9, 8, 7, 6, 7],
+  },
+  {
+    name: "Thomas Anderson",
+    marks: [6, 7, 10, 8],
+  },
+  {
+    name: "Jean-Baptiste Emanuel Zorg",
+    marks: [10, 9, 8, 9],
+  },
+];
 
-function getOperation() {
-  let answerUser;
+studentAvarageMarks(students);
 
-  do {
-    answerUser = prompt(`Введите какое математическое действие вы хотите выплнить:
-    + - сложение.
-    - - вычетание.
-    * - умножение.
-    / - деление.
-    `);
-  } while (!checkOperation(answerUser));
+groupAvarageMark(students);
 
-  return answerUser;
-}
+function studentAvarageMarks(studentsList) {
+  studentsList.forEach(student => {
+    let sumMarksStudent = student.marks.reduce((acc, mark) => acc += mark);
+    let avarageMarkStudent = sumMarksStudent / student.marks.length;
 
-function checkOperation(actionSelectedByUser) {
-  return (
-    actionSelectedByUser === "+" ||
-    actionSelectedByUser === "-" ||
-    actionSelectedByUser === "*" ||
-    actionSelectedByUser === "/"
-  );
-}
-
-function getValueOperands() {
-  let userAnswer, valueOfOperands;
-
-  do {
-    userAnswer = prompt("Введите  значения через пробел.");
-    valueOfOperands = filterAndCheckType(userAnswer);
-  } while (!valueOfOperands);
-
-  return valueOfOperands;
-}
-
-function filterAndCheckType(numbersEnteredByUser) {
-  if (!numbersEnteredByUser) {
-    alert("Введите значения");
-    return false;
-  }
-
-  let arrOperands = numbersEnteredByUser.split(" ")
-    .filter(checkNumber => +checkNumber || +checkNumber === 0)
-    .map(number => +number);
-
-  return divisionByZero(operation, arrOperands);
-}
-
-
-function divisionByZero(actionUser, arrayValues) {
-  const zeroValues = arrayValues.slice(1).filter(values => !values);
-
-  if (actionUser === "/" && zeroValues.length) {
-    alert("На 0 делить нельзя");
-    return false;
-  }
-
-  return arrayValues;
-}
-
-function showToScreen(actionUser) {
-  switch (actionUser) {
-    case "+":
-      sum(operands);
-      break;
-    case "-":
-      sub(operands);
-      break;
-    case "*":
-      mult(operands);
-      break;
-    case "/":
-      div(operands);
-      break;
-  }
-}
-
-function sum(arrayValues) {
-  let strValue = arrayValues[0];
-
-  const result = arrayValues.reduce((acum, value) => {
-    strValue += ` + ${value}`;
-    return acum += value;
+    console.log(`${student.name} средняя оценка ${avarageMarkStudent}`);
   });
 
-  alert(`${strValue} = ${result}`);
-  return result;
+  return true;
 }
 
-function sub(arrayValues) {
-  let strValue = arrayValues[0];
+function groupAvarageMark(studentsList) {
+  let sumMarksGroup = 0;
 
-  const result = arrayValues.reduce((acum, value) => {
-    strValue += ` - ${value}`;
-    return acum -= value;
+  studentsList.forEach(student => {
+    student.marks.reduce((acc, mark) => sumMarksGroup = acc + mark, sumMarksGroup);
   });
 
-  alert(`${strValue} = ${result}`);
-  return result;
-}
+  const avarageMarkGroup = sumMarksGroup / studentsList.length;
+  console.log(`Cредняя оценка группы: ${avarageMarkGroup}`);
 
-function mult(arrayValues) {
-  let strValue = arrayValues[0];
-
-  const result = arrayValues.reduce((acum, value) => {
-    strValue += ` * ${value}`;
-    return acum *= value;
-  });
-
-  alert(`${strValue} = ${result}`);
-  return result;
-}
-
-function div(arrayValues) {
-  let strValue = arrayValues[0];
-
-  const result = arrayValues.reduce((acum, value) => {
-    strValue += ` / ${value}`;
-    return acum /= value;
-  });
-
-  alert(`${strValue} = ${result}`);
-  return result;
+  return avarageMarkGroup;
 }
