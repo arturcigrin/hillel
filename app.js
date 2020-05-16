@@ -33,5 +33,5 @@ function renderTask(containerTasks, task) {
 }
 
 function validationInput() {
-  this.value.trim() ? btnAddTask.disabled = "" : btnAddTask.disabled = true;
+  this.value.trim() ? btnAddTask.disabled = false : btnAddTask.disabled = true;
 }
