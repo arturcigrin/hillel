@@ -1,0 +1,7 @@
+#formTask button {
+    cursor: pointer;
+}
+
+#todoList li {
+    list-style-type: none;
+}

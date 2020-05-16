@@ -1,42 +1,37 @@
-const students = [{
-    name: "John Smith",
-    marks: [10, 8, 6, 9, 8, 7],
-  },
-  {
-    name: "John Doe",
-    marks: [9, 8, 7, 6, 7],
-  },
-  {
-    name: "Thomas Anderson",
-    marks: [6, 7, 10, 8],
-  },
-  {
-    name: "Jean-Baptiste Emanuel Zorg",
-    marks: [10, 9, 8, 9],
-  },
-];
+const btnAddTask = document.querySelector("#formTask button");
+const inputFormTask = document.querySelector("#formTask input");
+const todoList = document.querySelector("#todoList");
+let countTask = 1;
 
-studentAvarageMarks(students);
+inputFormTask.addEventListener("input", validationInput);
+btnAddTask.addEventListener("click", onAddTask);
 
-groupAvarageMark(students);
+function onAddTask(event) {
+  event.preventDefault();
 
-function studentAvarageMarks(studentsList) {
-  studentsList.forEach(student => {
-    let sumMarksStudent = student.marks.reduce((acc, mark) => acc += mark);
-    let avarageMarkStudent = sumMarksStudent / student.marks.length;
-
-    console.log(`${student.name} средняя оценка ${avarageMarkStudent}`);
-  });
+  const valueInput = getValueInput(inputFormTask);
+  const li = createElementLi(valueInput);
+  renderTask(todoList, li);
 }
 
-function groupAvarageMark(studentsList) {
-  let sumMarksGroup = 0;
+function getValueInput(input) {
+  let value = input.value;
+  input.value = "";
+  validationInput.call(input);
+  return value;
+}
 
-  studentsList.forEach(student => {
-    student.marks.reduce((acc, mark) => sumMarksGroup = acc + mark, sumMarksGroup);
-  });
+function createElementLi(textTask) {
+  const li = document.createElement("li");
+  li.innerText = `${countTask++} ${textTask}`;
 
-  const avarageMarkGroup = sumMarksGroup / studentsList.length;
+  return li;
+}
 
-  console.log(`Cредняя оценка группы: ${avarageMarkGroup}`);
+function renderTask(containerTasks, task) {
+  containerTasks.append(task);
+}
+
+function validationInput() {
+  this.value.trim() ? (btnAddTask.disabled = "") : (btnAddTask.disabled = true);
 }
