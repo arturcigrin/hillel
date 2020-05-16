@@ -15,7 +15,7 @@ function onAddTask(event) {
 }
 
 function getValueInput(input) {
-  let value = input.value;
+  const value = input.value;
   input.value = "";
   validationInput.call(input);
   return value;
