@@ -14,10 +14,10 @@ function onAddTask(event) {
   renderTask(todoList, li);
 }
 
-function getValueInput(input) {
-  const value = input.value;
-  input.value = "";
-  validationInput.call(input);
+function getValueInput(inputElement) {
+  const value = inputElement.value;
+  inputElement.value = "";
+  validationInput.call(inputElement);
   return value;
 }
 
