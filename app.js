@@ -94,10 +94,10 @@ function div([firstArgument, secondArgument]) {
   return firstArgument / secondArgument;
 }
 
-function min(listArguments) {
-  return Math.min(...listArguments);
+function min([firstArgument, secondArgument]) {
+  return Math.min(firstArgument, secondArgument);
 }
 
-function max(listArguments) {
-  return Math.max(...listArguments);
+function max([firstArgument, secondArgument]) {
+  return Math.max(firstArgument, secondArgument);
 }
