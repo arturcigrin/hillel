@@ -9,13 +9,26 @@
 </head>
 
 <body>
-    <h1>Todo List</h1>
-    <form id="formTask">
-        <input type="text">
-        <button disabled>Добавить новую задачу</button>
+    <h1>Calculate</h1>
+    <form>
+        <input id='firstArgument' type="text" placeholder="Введите первый аргумент">
+
+        <select id="operations">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="min">min</option>
+            <option value="max">max</option>
+
+            <input id='secondArgument' type="text" placeholder="Введите второй аргумент">
+
+            <button id="calculate">Сalculate</button>
+        </select>
+
+        <div class="result hidden"></div>
     </form>
 
-    <ul id="todoList"></ul>
 
     <script src="app.js"></script>
 </body>

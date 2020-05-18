@@ -1,7 +1,14 @@
-#formTask button {
+#firstArgument,
+#secondArgument,
+#calculate,
+select {
     cursor: pointer;
 }
 
-#todoList li {
-    list-style-type: none;
+select {
+    margin: 0 10px;
+}
+
+.hidden {
+    display: none;
 }
