@@ -2,7 +2,7 @@ const firstArgument = document.querySelector('#firstArgument');
 const secondArgument = document.querySelector('#secondArgument');
 const operations = document.querySelector('#operations')
 const btnCalculate = document.querySelector('#calculate');
-const blockResult = document.querySelector('.result');
+const blockResult = document.querySelector('#result');
 
 btnCalculate.addEventListener("click", onCalculate);
 
@@ -13,7 +13,7 @@ function onCalculate(event) {
 
   clearInput(firstArgument, secondArgument);
 
-  chekWhatToShow(listArguments, userAction) ?
+  isValid(listArguments, userAction) ?
     showResult(blockResult, listArguments, userAction) :
     showMessageError(blockResult);
 }
@@ -52,18 +52,14 @@ function showResult(elementResult, arrayArguments, operationSelectedByUser) {
   const result = getResult(operationSelectedByUser, arrayArguments);
 
   elementResult.innerText = `Результат: ${result}`;
+  elementResult.classList.remove('hidden');
 
-  if (elementResult.classList.contains('hidden')) {
-    elementResult.classList.remove('hidden');
-  }
 }
 
 function showMessageError(elementResult) {
   elementResult.innerText = 'Ошибка: вы не ввели число или поделили на ноль';
+  elementResult.classList.remove('hidden');
 
-  if (elementResult.classList.contains('hidden')) {
-    elementResult.classList.remove('hidden');
-  }
 }
 
 function clearInput(...inputs) {
@@ -74,7 +70,7 @@ function checkDivisionByZero(secondArgument, operation) {
   return operation === '/' && secondArgument === 0 ? false : true;
 }
 
-function chekWhatToShow(arrayArguments, operationSelectedByUser) {
+function isValid(arrayArguments, operationSelectedByUser) {
   return checkDivisionByZero(arrayArguments[1], operationSelectedByUser) && arrayArguments.length > 1 ? true : false;
 }
 
