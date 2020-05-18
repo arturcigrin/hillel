@@ -30,20 +30,20 @@ function getUserAction(selectElement) {
   return selectElement.value;
 }
 
-function getResult(operation, arrayValues) {
+function getResult(operation, listArguments) {
   switch (operation) {
     case '+':
-      return sum(arrayValues);
+      return sum(listArguments);
     case '-':
-      return sub(arrayValues);
+      return sub(listArguments);
     case '*':
-      return mult(arrayValues);
+      return mult(listArguments);
     case '/':
-      return div(arrayValues);
+      return div(listArguments);
     case 'min':
-      return min(arrayValues);
+      return min(listArguments);
     case 'max':
-      return max(arrayValues);
+      return max(listArguments);
   }
 }
 
@@ -78,20 +78,20 @@ function chekWhatToShow(arrayArguments, operationSelectedByUser) {
   return checkDivisionByZero(arrayArguments[1], operationSelectedByUser) && arrayArguments.length > 1 ? true : false;
 }
 
-function sum(listArguments) {
-  return listArguments.reduce((result, value) => result += value);
+function sum([firstArgument, secondArgument]) {
+  return firstArgument + secondArgument;
 }
 
-function sub(listArguments) {
-  return listArguments.reduce((result, value) => result -= value);
+function sub([firstArgument, secondArgument]) {
+  return firstArgument - secondArgument;
 }
 
-function mult(listArguments) {
-  return listArguments.reduce((result, value) => result *= value);
+function mult([firstArgument, secondArgument]) {
+  return firstArgument * secondArgument;
 }
 
-function div(listArguments) {
-  return listArguments.reduce((result, value) => result /= value);
+function div([firstArgument, secondArgument]) {
+  return firstArgument / secondArgument;
 }
 
 function min(listArguments) {
