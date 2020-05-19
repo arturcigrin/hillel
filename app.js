@@ -1,99 +1,64 @@
-const firstArgument = document.querySelector('#firstArgument');
-const secondArgument = document.querySelector('#secondArgument');
-const operations = document.querySelector('#operations')
-const btnCalculate = document.querySelector('#calculate');
-const blockResult = document.querySelector('#result');
+window.addEventListener("load", () => {
+  const shapesSelect = document.querySelector("#shapes");
+  const colorInput = document.querySelector("#color-input");
+  const shapeEl = document.querySelector("#shape");
 
-btnCalculate.addEventListener("click", onCalculate);
+  receivingAndSettingColor(colorInput, shapeEl);
+  colorInput.addEventListener("input", onInput);
+  shapesSelect.addEventListener("change", onShapesSelect);
+  document.addEventListener("keydown", onMovingElement);
 
-function onCalculate(event) {
-  event.preventDefault();
-  const listArguments = getValueInputs(firstArgument, secondArgument);
-  const userAction = getUserAction(operations);
-
-  clearInput(firstArgument, secondArgument);
-
-  isValid(listArguments, userAction) ?
-    showResult(blockResult, listArguments, userAction) :
-    showMessageError(blockResult);
-}
-
-function getValueInputs(firstInput, secondInput) {
-  return filterAndCheckValues(firstInput.value, secondInput.value);
-}
-
-function filterAndCheckValues(...listValues) {
-  return listValues.filter(value => !isNaN(value) && value.trim()).map(number => +number);
-}
-
-function getUserAction(selectElement) {
-  return selectElement.value;
-}
-
-function getResult(operation, listArguments) {
-  switch (operation) {
-    case '+':
-      return sum(listArguments);
-    case '-':
-      return sub(listArguments);
-    case '*':
-      return mult(listArguments);
-    case '/':
-      return div(listArguments);
-    case 'min':
-      return min(listArguments);
-    case 'max':
-      return max(listArguments);
+  function receivingAndSettingColor(colorInputEl, elShape) {
+    const backgroundColor = colorInputEl.value;
+    elShape.style.background = backgroundColor;
   }
-}
 
-function showResult(elementResult, arrayArguments, operationSelectedByUser) {
+  function onInput() {
+    receivingAndSettingColor(this, shapeEl);
+  }
 
-  const result = getResult(operationSelectedByUser, arrayArguments);
+  function onShapesSelect() {
+    const selectedShape = this.value;
 
-  elementResult.innerText = `Результат: ${result}`;
-  elementResult.classList.remove('hidden');
+    shapeEl.setAttribute("class", `shape ${selectedShape}`);
+  }
 
-}
+  function onMovingElement(e) {
+    checkWhichArrowPressed(e.key);
+  }
 
-function showMessageError(elementResult) {
-  elementResult.innerText = 'Ошибка: вы не ввели число или поделили на ноль';
-  elementResult.classList.remove('hidden');
+  function checkWhichArrowPressed(keyArow) {
+    switch (keyArow) {
+      case "ArrowUp":
+        movingElement("top", shapeEl);
+        break;
+      case "ArrowDown":
+        movingElement("bottom", shapeEl);
+        break;
+      case "ArrowLeft":
+        movingElement("left", shapeEl);
+        break;
+      case "ArrowRight":
+        movingElement("right", shapeEl);
+    }
+  }
 
-}
+  function movingElement(direction, figureEl) {
+    const previousPositionTop = getComputedStyle(figureEl).top;
+    const previousPositionLeft = getComputedStyle(figureEl).left;
 
-function clearInput(...inputs) {
-  inputs.forEach(input => input.value = '');
-}
-
-function checkDivisionByZero(secondArgument, operation) {
-  return operation === '/' && secondArgument === 0 ? false : true;
-}
-
-function isValid(arrayArguments, operationSelectedByUser) {
-  return checkDivisionByZero(arrayArguments[1], operationSelectedByUser) && arrayArguments.length > 1 ? true : false;
-}
-
-function sum([firstArgument, secondArgument]) {
-  return firstArgument + secondArgument;
-}
-
-function sub([firstArgument, secondArgument]) {
-  return firstArgument - secondArgument;
-}
-
-function mult([firstArgument, secondArgument]) {
-  return firstArgument * secondArgument;
-}
-
-function div([firstArgument, secondArgument]) {
-  return firstArgument / secondArgument;
-}
-
-function min([firstArgument, secondArgument]) {
-  return Math.min(firstArgument, secondArgument);
-}
-
-function max([firstArgument, secondArgument]) {
-  return Math.max(firstArgument, secondArgument);
-}
+    switch (direction) {
+      case "top":
+        figureEl.style.top = `${parseInt(previousPositionTop) - 10}px`;
+        break;
+      case "bottom":
+        figureEl.style.top = `${parseInt(previousPositionTop) + 10}px`;
+        break;
+      case "left":
+        figureEl.style.left = `${parseInt(previousPositionLeft) - 10}px`;
+        break;
+      case "right":
+        figureEl.style.left = `${parseInt(previousPositionLeft) + 10}px`;
+    }
+  }
+});

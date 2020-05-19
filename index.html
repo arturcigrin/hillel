@@ -5,29 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Lesson 8</title>
+    <title>Lesson 9</title>
 </head>
 
 <body>
-    <h1>Calculate</h1>
-    <form>
-        <input id='firstArgument' type="text" placeholder="Введите первый аргумент">
 
-        <select id="operations">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-            <option value="min">min</option>
-            <option value="max">max</option>
-
-            <input id='secondArgument' type="text" placeholder="Введите второй аргумент">
-
-            <button id="calculate">Сalculate</button>
+    <div>
+        <select action="shapes" id="shapes" class="shapes">
+            <option value="circle">Круг</option>
+            <option value="square">Квадрат</option>
+            <option value="rectangle">Прямогугольник</option>
         </select>
 
-        <div id='result' class="hidden"></div>
-    </form>
+        <input type="color" id="color-input" class="color-input">
+    </div>
+
+    <div id="shape" class="shape circle"></div>
+
 
 
     <script src="app.js"></script>

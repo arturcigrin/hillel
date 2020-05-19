@@ -1,14 +1,31 @@
-#firstArgument,
-#secondArgument,
-#calculate,
-select {
-    cursor: pointer;
+.shapes {
+  cursor: pointer;
+  margin: 0 15px;
 }
 
-select {
-    margin: 0 10px;
+.shape {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  transition: 0.3s;
 }
 
-.hidden {
-    display: none;
+.color-input {
+  cursor: pointer;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+}
+
+.rectangle {
+  width: 200px;
+  height: 100px;
 }
