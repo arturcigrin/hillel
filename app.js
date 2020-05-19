@@ -24,28 +24,28 @@ window.addEventListener("load", () => {
   }
 
   function onMovingElement(e) {
-    checkWhichArrowPressed(e.key);
+    checkWhichArrowPressed(e.keyCode);
   }
 
-  function checkWhichArrowPressed(keyArow) {
-    switch (keyArow) {
-      case "ArrowUp":
+  function checkWhichArrowPressed(keyCode) {
+    switch (keyCode) {
+      case 38:
         movingElement("top", shapeEl);
         break;
-      case "ArrowDown":
+      case 40:
         movingElement("bottom", shapeEl);
         break;
-      case "ArrowLeft":
+      case 37:
         movingElement("left", shapeEl);
         break;
-      case "ArrowRight":
+      case 39:
         movingElement("right", shapeEl);
     }
   }
 
   function movingElement(direction, figureEl) {
-    const previousPositionTop = getComputedStyle(figureEl).top;
-    const previousPositionLeft = getComputedStyle(figureEl).left;
+    const prevPositionTop = getComputedStyle(figureEl).top;
+    const prevPositionLeft = getComputedStyle(figureEl).left;
 
     switch (direction) {
       case "top":
