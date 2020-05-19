@@ -49,16 +49,16 @@ window.addEventListener("load", () => {
 
     switch (direction) {
       case "top":
-        figureEl.style.top = `${parseInt(previousPositionTop) - 10}px`;
+        figureEl.style.top = `${parseInt(prevPositionTop) - 10}px`;
         break;
       case "bottom":
-        figureEl.style.top = `${parseInt(previousPositionTop) + 10}px`;
+        figureEl.style.top = `${parseInt(prevPositionTop) + 10}px`;
         break;
       case "left":
-        figureEl.style.left = `${parseInt(previousPositionLeft) - 10}px`;
+        figureEl.style.left = `${parseInt(prevPositionLeft) - 10}px`;
         break;
       case "right":
-        figureEl.style.left = `${parseInt(previousPositionLeft) + 10}px`;
+        figureEl.style.left = `${parseInt(prevPositionLeft) + 10}px`;
     }
   }
 });
