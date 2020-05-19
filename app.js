@@ -24,10 +24,10 @@ window.addEventListener("load", () => {
   }
 
   function onMovingElement(e) {
-    checkWhichArrowPressed(e.keyCode);
+    checkWhichKeyPressed(e.keyCode);
   }
 
-  function checkWhichArrowPressed(keyCode) {
+  function checkWhichKeyPressed(keyCode) {
     switch (keyCode) {
       case 38:
         movingElement("top", shapeEl);
