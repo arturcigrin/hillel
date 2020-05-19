@@ -9,8 +9,8 @@ window.addEventListener("load", () => {
   document.addEventListener("keydown", onMovingElement);
 
   function receivingAndSettingColor(colorInputEl, elShape) {
-    const backgroundColor = colorInputEl.value;
-    elShape.style.background = backgroundColor;
+    const backgroundShape = colorInputEl.value;
+    elShape.style.background = backgroundShape;
   }
 
   function onInput() {
