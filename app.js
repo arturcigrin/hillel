@@ -4,8 +4,8 @@ window.addEventListener("load", () => {
   const shapeEl = document.querySelector("#shape");
 
   receivingAndSettingColor(colorInput, shapeEl);
-  colorInput.addEventListener("input", onInput);
-  shapesSelect.addEventListener("change", onShapesSelect);
+  colorInput.addEventListener("input", onColorSelection);
+  shapesSelect.addEventListener("change", onShapeSelection);
   document.addEventListener("keydown", onMovingElement);
 
   function receivingAndSettingColor(colorInputEl, elShape) {
@@ -13,11 +13,11 @@ window.addEventListener("load", () => {
     elShape.style.background = backgroundShape;
   }
 
-  function onInput() {
+  function onColorSelection() {
     receivingAndSettingColor(this, shapeEl);
   }
 
-  function onShapesSelect() {
+  function onShapeSelection() {
     const selectedShape = this.value;
 
     shapeEl.setAttribute("class", `shape ${selectedShape}`);
