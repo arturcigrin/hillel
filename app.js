@@ -3,24 +3,25 @@ window.addEventListener("load", () => {
   const colorInput = document.querySelector("#color-input");
   const shapeEl = document.querySelector("#shape");
 
-  receivingAndSettingColor(colorInput, shapeEl);
+  receivingAndSettingColor(colorInput.value, shapeEl);
   colorInput.addEventListener("input", onColorSelection);
   shapesSelect.addEventListener("change", onShapeSelection);
   document.addEventListener("keydown", onMovingElement);
 
-  function receivingAndSettingColor(colorInputEl, elShape) {
-    const backgroundShape = colorInputEl.value;
-    elShape.style.background = backgroundShape;
+  function receivingAndSettingColor(selectedColor, elShape) {
+    elShape.style.background = selectedColor;
   }
 
   function onColorSelection() {
-    receivingAndSettingColor(this, shapeEl);
+    receivingAndSettingColor(this.value, shapeEl);
   }
 
   function onShapeSelection() {
     const selectedShape = this.value;
+    const prevShape = shapeEl.className.split(' ')[1];
 
-    shapeEl.setAttribute("class", `shape ${selectedShape}`);
+    shapeEl.classList.remove(prevShape);
+    shapeEl.classList.add(`${selectedShape}`);
   }
 
   function onMovingElement(e) {
@@ -44,21 +45,20 @@ window.addEventListener("load", () => {
   }
 
   function movingElement(direction, figureEl) {
-    const prevPositionTop = getComputedStyle(figureEl).top;
-    const prevPositionLeft = getComputedStyle(figureEl).left;
+    const prevPosition = getComputedStyle(figureEl);
 
     switch (direction) {
       case "top":
-        figureEl.style.top = `${parseInt(prevPositionTop) - 10}px`;
+        figureEl.style.top = `${parseInt(prevPosition.top) - 10}px`;
         break;
       case "bottom":
-        figureEl.style.top = `${parseInt(prevPositionTop) + 10}px`;
+        figureEl.style.top = `${parseInt(prevPosition.top) + 10}px`;
         break;
       case "left":
-        figureEl.style.left = `${parseInt(prevPositionLeft) - 10}px`;
+        figureEl.style.left = `${parseInt(prevPosition.left) - 10}px`;
         break;
       case "right":
-        figureEl.style.left = `${parseInt(prevPositionLeft) + 10}px`;
+        figureEl.style.left = `${parseInt(prevPosition.left) + 10}px`;
     }
   }
 });
