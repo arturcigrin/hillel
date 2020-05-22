@@ -17,11 +17,7 @@ window.addEventListener("load", () => {
   }
 
   function onShapeSelection() {
-    const selectedShape = this.value;
-    const prevShape = shapeEl.className.split(' ')[1];
-
-    shapeEl.classList.remove(prevShape);
-    shapeEl.classList.add(`${selectedShape}`);
+    shapeEl.className = `shape ${this.value}`;
   }
 
   function onMovingElement(e) {
