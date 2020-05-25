@@ -6,81 +6,74 @@ const CLASS_HIDE_TASK = "hide";
 const inputTaskEl = document.getElementById("inputTask");
 const addTaskBtn = document.getElementById("addTask");
 const todoListEl = document.getElementById("todoList");
-const taskTemplateEl = document.getElementById("taskTemplate").innerHTML;
+const taskTemplate = document.getElementById("taskTemplate").innerHTML;
 
 inputTaskEl.addEventListener("input", onChangeInput);
 addTaskBtn.addEventListener("click", onClickAddBtn);
 todoListEl.addEventListener("click", onClickTodoList);
 
-isValidInput(inputTaskEl);
+validationInput();
 
 function onChangeInput() {
-  isValidInput(this);
+  validationInput();
 }
 
 function onClickAddBtn(e) {
   e.preventDefault();
 
-  addTask(getValueInput(inputTaskEl), taskTemplateEl, todoListEl);
-  isValidInput(inputTaskEl);
+  addTask();
+  validationInput();
 }
 
 function onClickTodoList(e) {
-  checkIsTask(e.target);
-  checkIsBtnDeleteTask(e.target);
+  checkIsTask(e.target) ? switchClassOnTaskEl(e.target) : null;
+
+  checkIsBtnDeleteTask(e.target)
+    ? confirmDeleteTask(e.target.closest("[data-taskId]"))
+    : null;
 }
 
-function isValidInput(inputEl) {
-  addTaskBtn.disabled = !inputEl.value.trim();
-  switchClassOnBtnAdd(addTaskBtn, CLASS_SWITCH_BTN_ADD);
+function validationInput() {
+  addTaskBtn.disabled = !inputTaskEl.value.trim();
+  switchClassOnBtnAdd();
 }
 
-function switchClassOnBtnAdd(buttonAdd, switchClass) {
-  buttonAdd.disabled
-    ? buttonAdd.classList.add(switchClass)
-    : buttonAdd.classList.remove(switchClass);
+function switchClassOnBtnAdd() {
+  addTaskBtn.disabled
+    ? addTaskBtn.classList.add(CLASS_SWITCH_BTN_ADD)
+    : addTaskBtn.classList.remove(CLASS_SWITCH_BTN_ADD);
 }
 
-function getValueInput(inputEl) {
-  return inputEl.value;
+function getValueInput() {
+  return inputTaskEl.value;
 }
 
-function clearInput(inputElement) {
-  inputElement.value = "";
+function clearInput() {
+  inputTaskEl.value = "";
 }
 
-function addTask(textTask, taskEl, containerTodoList) {
-  clearInput(inputTaskEl);
-
-  containerTodoList.insertAdjacentHTML(
+function addTask() {
+  todoListEl.insertAdjacentHTML(
     "beforeend",
-    taskEl.replace("{{task}}", textTask).replace("{{taskId}}", Math.random())
+    taskTemplate
+      .replace("{{task}}", getValueInput())
+      .replace("{{taskId}}", Math.random())
   );
+
+  clearInput();
 }
 
 function checkIsTask(targetEl) {
-  if (targetEl.hasAttribute("data-taskid")) {
-    switchClassOnTaskEl(
-      targetEl,
-      CLASS_TASK_COMPLETED,
-      CLASS_TASK_NOT_COMPLETED
-    );
-  }
+  return targetEl.hasAttribute("data-taskid");
 }
 
-function switchClassOnTaskEl(
-  taskEl,
-  classTaskCompleted,
-  classTaskNotCompleted
-) {
-  taskEl.classList.toggle(classTaskNotCompleted);
-  taskEl.classList.toggle(classTaskCompleted);
+function switchClassOnTaskEl(taskEl) {
+  taskEl.classList.toggle(CLASS_TASK_NOT_COMPLETED);
+  taskEl.classList.toggle(CLASS_TASK_COMPLETED);
 }
 
 function checkIsBtnDeleteTask(targetEl) {
-  if (targetEl.classList.contains("delete-btn")) {
-    confirmDeleteTask(targetEl.closest("[data-taskId]"));
-  }
+  return targetEl.classList.contains("delete-btn");
 }
 
 function confirmDeleteTask(taskEl) {
