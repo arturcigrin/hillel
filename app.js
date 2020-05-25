@@ -2,6 +2,8 @@ const CLASS_TASK_COMPLETED = "completed";
 const CLASS_TASK_NOT_COMPLETED = "not-completed";
 const CLASS_SWITCH_BTN_ADD = "disabled";
 const CLASS_HIDE_TASK = "hide";
+const CLASS_DELETE_BTN = "delete-btn";
+const ATTR_TASK_ID = "data-taskId";
 
 const inputTaskEl = document.getElementById("inputTask");
 const addTaskBtn = document.getElementById("addTask");
@@ -28,9 +30,8 @@ function onClickAddBtn(e) {
 function onClickTodoList(e) {
   checkIsTask(e.target) ? switchClassOnTaskEl(e.target) : null;
 
-  checkIsBtnDeleteTask(e.target)
-    ? confirmDeleteTask(e.target.closest("[data-taskId]"))
-    : null;
+  checkIsBtnDeleteTask(e.target) ?
+    confirmDeleteTask(e.target.closest(`[${ATTR_TASK_ID}]`)) : null;
 }
 
 function validationInput() {
@@ -39,9 +40,9 @@ function validationInput() {
 }
 
 function switchClassOnBtnAdd() {
-  addTaskBtn.disabled
-    ? addTaskBtn.classList.add(CLASS_SWITCH_BTN_ADD)
-    : addTaskBtn.classList.remove(CLASS_SWITCH_BTN_ADD);
+  addTaskBtn.disabled ?
+    addTaskBtn.classList.add(CLASS_SWITCH_BTN_ADD) :
+    addTaskBtn.classList.remove(CLASS_SWITCH_BTN_ADD);
 }
 
 function getValueInput() {
@@ -56,15 +57,15 @@ function addTask() {
   todoListEl.insertAdjacentHTML(
     "beforeend",
     taskTemplate
-      .replace("{{task}}", getValueInput())
-      .replace("{{taskId}}", Math.random())
+    .replace("{{task}}", getValueInput())
+    .replace("{{taskId}}", Math.random())
   );
 
   clearInput();
 }
 
 function checkIsTask(targetEl) {
-  return targetEl.hasAttribute("data-taskid");
+  return targetEl.hasAttribute(ATTR_TASK_ID);
 }
 
 function switchClassOnTaskEl(taskEl) {
@@ -73,7 +74,7 @@ function switchClassOnTaskEl(taskEl) {
 }
 
 function checkIsBtnDeleteTask(targetEl) {
-  return targetEl.classList.contains("delete-btn");
+  return targetEl.classList.contains(CLASS_DELETE_BTN);
 }
 
 function confirmDeleteTask(taskEl) {
