@@ -1,9 +1,11 @@
 function createTemplate(templateString) {
     return function (objectInformation) {
+        let copyTemplateString = templateString;
+
         Object.keys(objectInformation).forEach(key => {
-            templateString = templateString.replace(`{{${key}}}`, objectInformation[key]);
+            copyTemplateString = copyTemplateString.replace(`{{${key}}}`, objectInformation[key]);
         })
 
-        return templateString;
+        return copyTemplateString;
     }
 }
