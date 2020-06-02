@@ -41,7 +41,7 @@ const ADD_MAYONNAISE = {
 };
 
 function Hamburger(sizeBurger) {
-  this.infoBurger = sizeBurger;
+  this.burgerInformation = sizeBurger;
   this.allToppings = [];
 }
 
@@ -52,7 +52,7 @@ Hamburger.prototype.addTopping = function (topping) {
 Hamburger.prototype.getPrice = function () {
   return this.allToppings.reduce(
     (totalPrice, currentPrice) => (totalPrice += currentPrice.price),
-    this.infoBurger.price
+    this.burgerInformation.price
   );
 };
 
@@ -60,6 +60,6 @@ Hamburger.prototype.getCallories = function () {
   return this.allToppings.reduce(
     (totalCallories, currentCallories) =>
     (totalCallories += currentCallories.callories),
-    this.infoBurger.callories
+    this.burgerInformation.callories
   );
 };
