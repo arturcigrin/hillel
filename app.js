@@ -50,16 +50,9 @@ Hamburger.prototype.addTopping = function (topping) {
 };
 
 Hamburger.prototype.getPrice = function () {
-  return this.allToppings.reduce(
-    (totalPrice, currentPrice) => (totalPrice += currentPrice.price),
-    this.burgerInformation.price
-  );
+  return this.allToppings.reduce((totalPrice, currentPrice) => (totalPrice += currentPrice.price), this.burgerInformation.price);
 };
 
 Hamburger.prototype.getCallories = function () {
-  return this.allToppings.reduce(
-    (totalCallories, currentCallories) =>
-    (totalCallories += currentCallories.callories),
-    this.burgerInformation.callories
-  );
+  return this.allToppings.reduce((totalCallories, currentCallories) => (totalCallories += currentCallories.callories), this.burgerInformation.callories);
 };
