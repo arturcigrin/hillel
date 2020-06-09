@@ -1,0 +1,39 @@
+.list {
+  max-width: 30%;
+  margin: 0 auto;
+}
+
+.item {
+  margin-bottom: 2px;
+  border: 1px solid #fff;
+  background-color: rgba(5, 148, 124);
+  color: #fff;
+  border-radius: 3px;
+}
+
+.item:hover {
+  background: #696969;
+  transition: 0.3s;
+}
+
+.title {
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.body {
+  display: none;
+  padding: 15px 20px;
+  background: #fff;
+  color: #777;
+}
+
+.show {
+  display: block;
+}
+
+.aler-error {
+  display: block;
+  color: red;
+}
