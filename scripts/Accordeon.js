@@ -24,12 +24,13 @@ Accordeon.prototype.onClickItem = function (e) {
   if (e.target.classList.contains(Accordeon.CLASS_TITLE)) {
     e.target.nextElementSibling.classList.toggle(Accordeon.CLASS_SHOW);
 
-    Accordeon.prototype.hiddenBodyOnClick.call(this, e.target.nextElementSibling);
+    Accordeon.prototype.hiddenBodyOnClick(this, e.target.nextElementSibling);
   }
 };
 
-Accordeon.prototype.hiddenBodyOnClick = function (targetEl) {
-  this.querySelectorAll(`.${Accordeon.CLASS_BODY}`).forEach((body) => {
+Accordeon.prototype.hiddenBodyOnClick = function (listEl, targetEl) {
+
+  listEl.querySelectorAll(`.${Accordeon.CLASS_BODY}`).forEach((body) => {
     if (targetEl !== body) {
       body.classList.remove(Accordeon.CLASS_SHOW);
     }
