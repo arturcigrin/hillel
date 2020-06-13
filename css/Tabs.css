@@ -18,20 +18,20 @@
   cursor: pointer;
 }
 
-.tab:hover>.tab-title {
+.tab:hover > .tab-title {
   color: #000;
-  -webkit-transition:color .2s;
-  -moz-transition:color .2s;
-  -ms-transition:color .2s;
-  -o-transition:color .2s;
-  transition:color .2s;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
 }
 
 .tab-title {
   color: #007dff;
 }
 
-.tab>.tab-body {
+.tab > .tab-body {
   display: none;
 }
 

@@ -32,23 +32,14 @@ class Tabs {
   _init() {
     Tabs.addClassElement(this._element, Tabs.CLASS_TABS);
 
-    Array.prototype.forEach.call(this._element.children, (element) => {
+    Array.prototype.forEach.call(this._element.children, (element, index) => {
       Tabs.addClassElement(element, Tabs.CLASS_TAB);
-    });
-
-    this._element.querySelectorAll(`.${Tabs.CLASS_TITLE}`).forEach((tab, index) => {
-      Tabs.addClassElement(tab, Tabs.CLASS_TAB_TITLE);
+      Tabs.addClassElement(element.firstElementChild, Tabs.CLASS_TAB_TITLE);
+      Tabs.addClassElement(element.lastElementChild, Tabs.CLASS_TAB_BODY);
 
       if (!index) {
-        Tabs.addClassElement(tab.parentElement, Tabs.CLASS_TAB_ACTIVE);
-      }
-    });
-
-    this._element.querySelectorAll(`.${Tabs.CLASS_BODY}`).forEach((tab, index) => {
-      Tabs.addClassElement(tab, Tabs.CLASS_TAB_BODY);
-
-      if (!index) {
-        Tabs.moveElement(tab, this._element);
+        Tabs.addClassElement(element, Tabs.CLASS_TAB_ACTIVE);
+        Tabs.moveElement(element.lastElementChild, this._element);
       }
     });
   }
