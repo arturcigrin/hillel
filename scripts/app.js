@@ -1,1 +1,1 @@
- new Accordeon(document.querySelector('#list'));
+new Accordeon(document.querySelector("#list"));
