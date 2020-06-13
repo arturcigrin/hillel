@@ -13,7 +13,6 @@ class Tabs {
     this._element = element;
 
     this._init();
-    this._element.addEventListener("click", this.onClickTabs);
   }
 
   static addClassElement(el, classToAdd) {
@@ -30,6 +29,8 @@ class Tabs {
   }
 
   _init() {
+    this._element.addEventListener("click", this.onClickTabs);
+
     Tabs.addClassElement(this._element, Tabs.CLASS_TABS);
 
     Array.prototype.forEach.call(this._element.children, (element, index) => {
