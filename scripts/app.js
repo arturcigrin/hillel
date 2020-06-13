@@ -1,1 +1,1 @@
-new Accordeon(document.querySelector("#list"));
+new Tabs(document.querySelector("#tabs"));
