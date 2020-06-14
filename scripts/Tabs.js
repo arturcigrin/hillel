@@ -22,6 +22,14 @@ class Tabs {
     el.classList.remove(classToRemove);
   }
 
+  static calculateTabsElHeight(tabEl, tabsEl) {
+    tabsEl.style.height = 0;
+
+    tabsEl.style.height = tabEl.offsetHeight + tabEl.lastElementChild.offsetHeight + tabsEl.offsetHeight + "px";
+
+    tabEl.lastElementChild.style.top = tabEl.offsetHeight + tabEl.offsetTop + "px";
+  }
+
   _init() {
     this._element.addEventListener("click", this.onClickTabs);
 
@@ -37,14 +45,6 @@ class Tabs {
         Tabs.calculateTabsElHeight(element, this._element);
       }
     });
-  }
-
-  static calculateTabsElHeight(tabEl, tabsEl) {
-    tabsEl.style.height = 0;
-
-    tabsEl.style.height = tabEl.offsetHeight + tabEl.lastElementChild.offsetHeight + tabsEl.offsetHeight + "px";
-
-    tabEl.lastElementChild.style.top = tabEl.offsetHeight + tabEl.offsetTop + "px";
   }
 
   onClickTabs(e) {
