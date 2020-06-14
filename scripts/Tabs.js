@@ -22,7 +22,7 @@ class Tabs {
     el.classList.remove(classToRemove);
   }
 
-  static calculateTabsElHeight(tabEl, tabsEl) {
+  static calculateElHeight(tabEl, tabsEl) {
     tabsEl.style.height = 0;
 
     tabsEl.style.height = tabEl.offsetHeight + tabEl.lastElementChild.offsetHeight + tabsEl.offsetHeight + "px";
@@ -42,7 +42,7 @@ class Tabs {
 
       if (!index) {
         Tabs.addClassElement(element, Tabs.CLASS_TAB_ACTIVE);
-        Tabs.calculateTabsElHeight(element, this._element);
+        Tabs.calculateElHeight(element, this._element);
       }
     });
   }
@@ -52,8 +52,8 @@ class Tabs {
       Tabs.removeClassElement(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), Tabs.CLASS_TAB_ACTIVE);
       Tabs.addClassElement(e.target.closest(`.${Tabs.CLASS_TAB}`), Tabs.CLASS_TAB_ACTIVE);
 
-      Tabs.calculateTabsElHeight(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), this);
-      Tabs.calculateTabsElHeight(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), this);
+      Tabs.calculateElHeight(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), this);
+      Tabs.calculateElHeight(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), this);
     }
   }
 }
