@@ -11,7 +11,6 @@ class Tabs {
 
   constructor(element) {
     this._element = element;
-
     this._init();
   }
 
@@ -21,11 +20,6 @@ class Tabs {
 
   static removeClassElement(el, classToRemove) {
     el.classList.remove(classToRemove);
-  }
-
-  static moveElement(el, whereToMove) {
-    el.remove();
-    whereToMove.append(el);
   }
 
   _init() {
@@ -40,20 +34,26 @@ class Tabs {
 
       if (!index) {
         Tabs.addClassElement(element, Tabs.CLASS_TAB_ACTIVE);
-        Tabs.moveElement(element.lastElementChild, this._element);
+        Tabs.calculateTabsElHeight(element, this._element);
       }
     });
   }
 
+  static calculateTabsElHeight(tabEl, tabsEl) {
+    tabsEl.style.height = 0;
+
+    tabsEl.style.height = tabEl.offsetHeight + tabEl.lastElementChild.offsetHeight + tabsEl.offsetHeight + "px";
+
+    tabEl.lastElementChild.style.top = tabEl.offsetHeight + tabEl.offsetTop + "px";
+  }
+
   onClickTabs(e) {
     if (e.target.closest(`.${Tabs.CLASS_TAB}`) && !e.target.closest(`.${Tabs.CLASS_TAB_ACTIVE}`)) {
-      Tabs.moveElement(this.lastElementChild, this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`));
-
       Tabs.removeClassElement(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), Tabs.CLASS_TAB_ACTIVE);
-
       Tabs.addClassElement(e.target.closest(`.${Tabs.CLASS_TAB}`), Tabs.CLASS_TAB_ACTIVE);
 
-      Tabs.moveElement(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`).lastElementChild, this);
+      Tabs.calculateTabsElHeight(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), this);
+      Tabs.calculateTabsElHeight(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), this);
     }
   }
 }
