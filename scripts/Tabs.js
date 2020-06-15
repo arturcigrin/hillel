@@ -24,10 +24,6 @@ class Tabs {
   }
 
   static moveElement(el, whereToMove) {
-<<<<<<< Updated upstream
-    el.remove();
-=======
->>>>>>> Stashed changes
     whereToMove.append(el);
   }
 
@@ -42,11 +38,7 @@ class Tabs {
       Tabs.addClassToElement(element.lastElementChild, Tabs.CLASS_TAB_BODY);
 
       if (!index) {
-<<<<<<< Updated upstream
-        Tabs.addClassElement(element, Tabs.CLASS_TAB_ACTIVE);
-=======
         Tabs.addClassToElement(element, Tabs.CLASS_TAB_ACTIVE);
->>>>>>> Stashed changes
         Tabs.moveElement(element.lastElementChild, this._element);
       }
     });
@@ -57,15 +49,9 @@ class Tabs {
       Tabs.moveElement(this.lastElementChild, this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`));
 
       Tabs.removeClassElement(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), Tabs.CLASS_TAB_ACTIVE);
-<<<<<<< Updated upstream
-
-      Tabs.addClassElement(e.target.closest(`.${Tabs.CLASS_TAB}`), Tabs.CLASS_TAB_ACTIVE);
-
-=======
 
       Tabs.addClassToElement(e.target.closest(`.${Tabs.CLASS_TAB}`), Tabs.CLASS_TAB_ACTIVE);
 
->>>>>>> Stashed changes
       Tabs.moveElement(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`).lastElementChild, this);
     }
   }
