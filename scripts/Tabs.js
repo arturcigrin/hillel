@@ -15,7 +15,7 @@ class Tabs {
     this._init();
   }
 
-  static addClassElement(el, classToAdd) {
+  static addClassToElement(el, classToAdd) {
     el.classList.add(classToAdd);
   }
 
@@ -24,22 +24,29 @@ class Tabs {
   }
 
   static moveElement(el, whereToMove) {
+<<<<<<< Updated upstream
     el.remove();
+=======
+>>>>>>> Stashed changes
     whereToMove.append(el);
   }
 
   _init() {
     this._element.addEventListener("click", this.onClickTabs);
 
-    Tabs.addClassElement(this._element, Tabs.CLASS_TABS);
+    Tabs.addClassToElement(this._element, Tabs.CLASS_TABS);
 
     Array.prototype.forEach.call(this._element.children, (element, index) => {
-      Tabs.addClassElement(element, Tabs.CLASS_TAB);
-      Tabs.addClassElement(element.firstElementChild, Tabs.CLASS_TAB_TITLE);
-      Tabs.addClassElement(element.lastElementChild, Tabs.CLASS_TAB_BODY);
+      Tabs.addClassToElement(element, Tabs.CLASS_TAB);
+      Tabs.addClassToElement(element.firstElementChild, Tabs.CLASS_TAB_TITLE);
+      Tabs.addClassToElement(element.lastElementChild, Tabs.CLASS_TAB_BODY);
 
       if (!index) {
+<<<<<<< Updated upstream
         Tabs.addClassElement(element, Tabs.CLASS_TAB_ACTIVE);
+=======
+        Tabs.addClassToElement(element, Tabs.CLASS_TAB_ACTIVE);
+>>>>>>> Stashed changes
         Tabs.moveElement(element.lastElementChild, this._element);
       }
     });
@@ -50,9 +57,15 @@ class Tabs {
       Tabs.moveElement(this.lastElementChild, this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`));
 
       Tabs.removeClassElement(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`), Tabs.CLASS_TAB_ACTIVE);
+<<<<<<< Updated upstream
 
       Tabs.addClassElement(e.target.closest(`.${Tabs.CLASS_TAB}`), Tabs.CLASS_TAB_ACTIVE);
 
+=======
+
+      Tabs.addClassToElement(e.target.closest(`.${Tabs.CLASS_TAB}`), Tabs.CLASS_TAB_ACTIVE);
+
+>>>>>>> Stashed changes
       Tabs.moveElement(this.querySelector(`.${Tabs.CLASS_TAB_ACTIVE}`).lastElementChild, this);
     }
   }
