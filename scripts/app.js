@@ -1,5 +1,1 @@
-new Tabs(document.querySelector("#tabs"));
-
-
-
-
+new TodoList(document.querySelector('#container'));
