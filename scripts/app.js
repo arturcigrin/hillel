@@ -1,1 +1,1 @@
-new TodoList(document.querySelector('#container'));
+new Gallery();

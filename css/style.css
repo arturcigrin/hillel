@@ -8,63 +8,28 @@ html,
 body {
   height: 100%;
 }
-.none {
-  display: none;
-}
 
-.bg-completedTask {
-  background: #98fb98 !important;
-}
-.todo_list-table {
-  width: 65%;
-  margin: 0 auto;
-  border-spacing: 0px;
-  text-align: left;
-}
-
-.bg-thead {
-  background-color: #007aec;
-  color: #fff;
+.container {
+  display: flex;
   font-size: 20px;
+}
+.wrap-list-albums {
+  width: 40%;
+}
+.list-albums {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.list-albums > li {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
   font-weight: 600;
-}
-
-.list_table-th,
-.list_table-td {
-  padding: 10px;
-}
-
-.list_table-td {
-  position: relative;
-  background-color: #f0f4f9;
-  color: #007aec;
-}
-
-.btn-remove {
-  position: absolute;
-  top: 50%;
-  color: #000;
+  padding: 10px 9px;
   cursor: pointer;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 7%;
 }
-
-.bg-remove {
-  background: #000;
-  transform: translateX(-200%);
-  -webkit-transform: translateX(-200%);
-  -moz-transform: translateX(-200%);
-  -ms-transform: translateX(-200%);
-  -o-transform: translateX(-200%);
-  transition: transform 1.5s;
-  -webkit-transition: transform 1.5s;
-  -moz-transition: transform 1.5s;
-  -ms-transition: transform 1.5s;
-  -o-transition: transform 1.5s;
-  z-index: 10;
-  box-shadow: 0px 25px 5px -11px rgba(0, 0, 0, 0.33);
+.wrap-photo {
+  width: 100%;
 }

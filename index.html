@@ -5,23 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./libs/normalize/normalize.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>Lesson 16 Todo list</title>
+    <title>Lesson 17 Gallery</title>
   </head>
   <body>
-    <div id="container" class="none">
-      <table id="todoList" class="todo_list-table">
-        <thead class="bg-thead">
-          <tr>
-            <th class="list_table-th">ID</th>
-            <th class="list_table-th">Title</th>
-          </tr>
-        </thead>
-        <tbody id="bodyTodoList"></tbody>
-      </table>
+    <div id="container" class="container" class="none">
+      <div class="wrap-list-albums">
+        <ul id="listAlbums" class="list-albums"></ul>
+      </div>
+
+      <div id="photoContainer" class="wrap-photo"></div>
     </div>
 
     <script src="./scripts/HTTPRequests.js"></script>
-    <script src="./scripts/TodoList.js"></script>
+    <script src="./scripts/Gallery.js"></script>
     <script src="./scripts/app.js"></script>
   </body>
 </html>
