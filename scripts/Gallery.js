@@ -30,7 +30,7 @@ class Gallery {
     whereToInsert.appendChild(el);
   }
 
-  static createUrlAlbum(url, id) {
+  static createUrlAlbum(id) {
     return Gallery.URL_PHOTOS + `?albumId=${id}`;
   }
 
@@ -46,7 +46,7 @@ class Gallery {
     return xhr.GET(Gallery.URL_ALBUMS);
   }
   _getPhotos(xhr, id) {
-    return xhr.GET(Gallery.createUrlAlbum(Gallery.URL_PHOTOS, id));
+    return xhr.GET(Gallery.createUrlAlbum(id));
   }
 
   renderPhoto(listPhoto) {
