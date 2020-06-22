@@ -6,8 +6,9 @@ class Gallery {
   static LIST_ALBUM_EL = document.querySelector('#listAlbums');
   static EL_PHOTO_CONTAINER = document.querySelector('#photoContainer');
   static ATTRIBUTE_DATA_ID = 'data-id';
+  static XHR = new HTTPRequests();
 
-  constructor(element) {
+  constructor() {
     this._init();
   }
 
@@ -42,11 +43,15 @@ class Gallery {
     Gallery.LIST_ALBUM_EL.addEventListener('click', this.onClickListAlbum.bind(this));
   }
 
-  _getAlbums(xhr) {
-    return xhr.GET(Gallery.URL_ALBUMS);
+  _getAlbums() {
+    return Gallery.XHR.GET(Gallery.URL_ALBUMS);
   }
-  _getPhotos(xhr, id) {
-    return xhr.GET(Gallery.createUrlAlbum(id));
+  _getPhotos(id) {
+    return Gallery.XHR.GET(Gallery.createUrlAlbum(id));
+  }
+
+  getFirstAlbumPhotos(id) {
+    this._getPhotos(id).then(this.renderPhoto);
   }
 
   renderPhoto(listPhoto) {
@@ -66,7 +71,7 @@ class Gallery {
       fragment.appendChild(Gallery.createElLi(album));
     });
 
-    this._getPhotos(new HTTPRequests(), listAlbums[0].id).then(this.renderPhoto);
+    this.getFirstAlbumPhotos(listAlbums[0].id);
 
     Gallery.appendElement(fragment, Gallery.LIST_ALBUM_EL);
   }
@@ -75,7 +80,7 @@ class Gallery {
     if (e.target.closest(`[${Gallery.ATTRIBUTE_DATA_ID}]`)) {
       const idAlbum = e.target.closest(`[${Gallery.ATTRIBUTE_DATA_ID}]`).dataset.id;
 
-      this._getPhotos(new HTTPRequests(), idAlbum).then((listPhoto) => {
+      this._getPhotos(idAlbum).then((listPhoto) => {
         Gallery.EL_PHOTO_CONTAINER.innerHTML = '';
 
         this.renderPhoto(listPhoto);
