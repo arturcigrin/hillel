@@ -38,6 +38,7 @@ class Gallery {
   _init() {
     this._getAlbums(new HTTPRequests())
       .then(this.renderListAlbum.bind(this))
+      .then(this.getFirstAlbumPhotos.bind(this))
       .catch((err) => console.error(err));
 
     Gallery.LIST_ALBUM_EL.addEventListener('click', this.onClickListAlbum.bind(this));
@@ -71,9 +72,9 @@ class Gallery {
       fragment.appendChild(Gallery.createElLi(album));
     });
 
-    this.getFirstAlbumPhotos(listAlbums[0].id);
-
     Gallery.appendElement(fragment, Gallery.LIST_ALBUM_EL);
+
+    return listAlbums[0].id;
   }
 
   onClickListAlbum(e) {
