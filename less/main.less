@@ -1,0 +1,91 @@
+@import './utils.less';
+
+.container {
+  background-color: rgba(0, 55, 99, 0.8);
+}
+
+.form-new-task {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: auto;
+  padding-top: 50px;
+}
+.new-task {
+  width: 70%;
+  height: 2rem;
+  padding: 2px 10px;
+  padding-left: 20px;
+  border-radius: 50px;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #777;
+}
+.add-task {
+  padding: 5px 15px;
+  background-color: #f0ffff;
+  border: none;
+  border-radius: 50px;
+  color: #000;
+  font-weight: 500;
+  letter-spacing: 1.3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.todo-wrapper {
+  display: flex;
+  margin: auto;
+  margin-top: 40px;
+  width: 70%;
+}
+
+.todo-list {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.task {
+  width: 70%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  padding: 5px 20px;
+  background-color: #fffacd;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 1.2px;
+  border-bottom: 1px solid #000;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .btn-delete {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: tomato;
+  }
+}
+
+.task-completed {
+  background-color: #f0ffff;
+}
+
+.button-blocked {
+  background-color: rgba(236, 255, 255, 0.5);
+}
+
+.remove-task {
+  transform: translateX(-300%);
+  transition: 1.3s;
+  box-shadow: 1px 47px 80px 21px rgba(255, 247, 255, 1);
+  z-index: 6;
+}

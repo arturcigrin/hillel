@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh7USew8.ttf) format('truetype');
+}
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.container {
+  background-color: rgba(0, 55, 99, 0.8);
+}
+.form-new-task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 70%;
+  margin: auto;
+  padding-top: 50px;
+}
+.new-task {
+  width: 70%;
+  height: 2rem;
+  padding: 2px 10px;
+  padding-left: 20px;
+  border-radius: 50px;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #777;
+}
+.add-task {
+  padding: 5px 15px;
+  background-color: #f0ffff;
+  border: none;
+  border-radius: 50px;
+  color: #000;
+  font-weight: 500;
+  letter-spacing: 1.3px;
+  outline: none;
+  cursor: pointer;
+}
+.todo-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  margin-top: 40px;
+  width: 70%;
+}
+.todo-list {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.task {
+  width: 70%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  padding: 5px 20px;
+  background-color: #fffacd;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 1.2px;
+  border-bottom: 1px solid #000;
+}
+.task:last-child {
+  border-bottom: none;
+}
+.task .btn-delete {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  cursor: pointer;
+  color: tomato;
+}
+.task-completed {
+  background-color: #f0ffff;
+}
+.button-blocked {
+  background-color: rgba(236, 255, 255, 0.5);
+}
+.remove-task {
+  -webkit-transform: translateX(-300%);
+          transform: translateX(-300%);
+  -webkit-transition: 1.3s;
+  transition: 1.3s;
+  -webkit-box-shadow: 1px 47px 80px 21px #fff7ff;
+          box-shadow: 1px 47px 80px 21px #fff7ff;
+  z-index: 6;
+}
