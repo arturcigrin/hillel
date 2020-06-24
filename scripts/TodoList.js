@@ -74,7 +74,7 @@ class TodoList {
 
     this.isEmptyInput()
       ? TodoList.addClassToElement(TodoList.BUTTON_ADD_TASK, TodoList.CLASS_BTN_LOCKED)
-      : TodoList.removeClassElement(TodoList.BUTTON_ADD_TASK, TodoList.CLASS_BTN_LOCKED);
+      : TodoList.removeClassToElement(TodoList.BUTTON_ADD_TASK, TodoList.CLASS_BTN_LOCKED);
   };
 
   onClickBtnAdd = (e) => {
