@@ -16,9 +16,8 @@ class HTTPRequests {
         'Content-type': 'application/json; charset=UTF-8',
       },
       body: JSON.stringify({
-        comleted: false,
+        completed: false,
         title,
-        userId: 10,
       }),
     })
       .then((res) => {
