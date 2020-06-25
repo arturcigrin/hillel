@@ -92,18 +92,8 @@ class TodoList {
 
   onClickTodoList = (e) => {
     switch (true) {
-      case e.target.matches(`.${TodoList.CLASS_TASK_COMPLETED}`):
-        TodoList.removeClassToElement(e.target, TodoList.CLASS_TASK_COMPLETED);
-
-        this.getTask(e.target.dataset.id)
-          .then((task) => {
-            task.completed = !task.completed;
-            return task;
-          })
-          .then((modifyTask) => this._updateStatusTask(TodoList.createUrl(modifyTask.id), modifyTask));
-        break;
-      case e.target.matches(`.${TodoList.CLASS_TASK}`):
-        TodoList.addClassToElement(e.target, TodoList.CLASS_TASK_COMPLETED);
+      case e.target.matches(`.${TodoList.CLASS_TASK_COMPLETED}`) || e.target.matches(`.${TodoList.CLASS_TASK}`):
+        e.target.classList.toggle(TodoList.CLASS_TASK_COMPLETED);
 
         this.getTask(e.target.dataset.id)
           .then((task) => {
