@@ -98,7 +98,10 @@ class Stickers {
   }
 
   addStickersOnBoard(stickers) {
-    Stickers.STICKER_CONTAINER_EL.innerHTML = '';
+    if (Stickers.STICKER_CONTAINER_EL.innerHTML.length) {
+      Stickers.STICKER_CONTAINER_EL.innerHTML = '';
+    }
+
     Stickers.STICKER_CONTAINER_EL.insertAdjacentHTML('afterbegin', stickers);
   }
 
