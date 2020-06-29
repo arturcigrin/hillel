@@ -3,13 +3,12 @@
           box-sizing: border-box;
   font-family: 'Lato', sans-serif;
 }
-html,
 body {
-  height: 100%;
+  position: relative;
 }
 .board {
   position: relative;
-  height: 100%;
+  height: auto;
 }
 .board::before {
   content: '';
@@ -76,4 +75,31 @@ body {
   text-align: center;
   font-size: 32px;
   font-weight: bold;
+}
+.load {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.load .wrapper-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 0;
+}
+.load .wrapper-loading .loading {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
+.load .wrapper-loading .color {
+  color: yellowgreen;
+}
+.none {
+  display: none;
 }

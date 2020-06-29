@@ -5,12 +5,18 @@ class Stickers {
   static BTN_NEW_STICKER = document.querySelector('#newSticker');
   static STICKER_CONTAINER_EL = document.querySelector('#sticksContainer');
   static TEMPLATE_STICKER = document.querySelector('#templateSticker').innerHTML;
+
   static XHR = new HTTPRequests();
   static LIST_STICKERS = [];
   static CLASS_STICKERS = 'stickers';
   static CLASS_BTN_DELETE = 'stickers__btn-delete';
   static CLASS_STICKERS_BODY = 'stickers__body';
   static CLASS_ERROR = 'http-error';
+
+  static LOAD_EL = document.querySelector('#load');
+  static BOARD_EL = document.querySelector('#board');
+  static CLASS_NONE = 'none';
+  static HEIGHT_VIEWPORT = '100vh';
 
   constructor() {
     this.init();
@@ -22,12 +28,27 @@ class Stickers {
     document.body.innerHTML = `Error: ${status}`;
   }
 
+  static load() {
+    Stickers.LOAD_EL.classList.remove(Stickers.CLASS_NONE);
+
+    Stickers.STICKER_CONTAINER_EL.children.length
+      ? (Stickers.LOAD_EL.style.height = Stickers.BOARD_EL.clientHeight + 'px')
+      : (Stickers.LOAD_EL.style.height = Stickers.HEIGHT_VIEWPORT);
+  }
+
+  static loadEnd() {
+    Stickers.LOAD_EL.classList.add(Stickers.CLASS_NONE);
+  }
+
   init() {
+    Stickers.load();
+
     this._getStickers()
       .then(this.setListStickers)
       .then(this.renderStickers.bind(this))
       .then(this.addStickersOnBoard)
-      .catch(Stickers.httpError);
+      .catch(Stickers.httpError)
+      .finally(Stickers.loadEnd);
 
     Stickers.BTN_NEW_STICKER.addEventListener('click', this.onClickBtnNewSticker.bind(this));
     Stickers.STICKER_CONTAINER_EL.addEventListener('click', this.onClickBtnDelete.bind(this));
@@ -36,6 +57,7 @@ class Stickers {
 
   onClickBtnNewSticker(e) {
     e.preventDefault();
+    Stickers.load();
 
     this._createSticker()
       .then((sticker) => {
@@ -44,15 +66,20 @@ class Stickers {
         return this.renderStickers(Stickers.LIST_STICKERS);
       })
       .then(this.addStickersOnBoard)
-      .catch(Stickers.httpError);
+      .catch(Stickers.httpError)
+      .finally(Stickers.loadEnd);
   }
 
   onClickBtnDelete(e) {
     e.preventDefault();
+
     if (e.target.classList.contains(`${Stickers.CLASS_BTN_DELETE}`)) {
+      Stickers.load();
+
       this._deleteSticker(e.target.closest(`.${Stickers.CLASS_STICKERS}`).dataset.id)
         .then(() => this.removeSticker(e.target.closest(`.${Stickers.CLASS_STICKERS}`)))
-        .catch(Stickers.httpError);
+        .catch(Stickers.httpError)
+        .finally(Stickers.loadEnd);
     }
   }
 

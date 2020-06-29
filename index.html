@@ -19,6 +19,13 @@
       <div id="sticksContainer" class="sticks-container"></div>
     </div>
 
+    <div id="load" class="load none">
+      <div class="wrapper-loading">
+        <span class="loading">Loa</span>
+        <span class="loading color">ding</span>
+      </div>
+    </div>
+
     <script id="templateSticker" type="text/template">
       <div class="stickers" data-id= {{id}}>
         <button class="stickers__btn-delete" title="удалить стикер">
@@ -27,7 +34,6 @@
         <textarea class="stickers__body">{{description}}</textarea>
       </div>;
     </script>
-
     <script src="./scripts/HTTPRequests.js"></script>
     <script src="./scripts/BoardStickers.js"></script>
     <script src="./scripts/app.js"></script>
