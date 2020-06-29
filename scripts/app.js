@@ -1,1 +1,1 @@
-new TodoList();
+new Stickers();

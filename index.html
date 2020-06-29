@@ -3,24 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="./libs/normalize/normalize.css" />
     <link rel="stylesheet" href="./css/main.css" />
-    <title>Lesson 18 TodoList V3</title>
+    <title>Lesson 19 Board stickers</title>
   </head>
   <body>
-    <div id="container" class="container">
-      <form class="form-new-task">
-        <input id="newTask" class="new-task" type="text" placeholder="Введите новую задачу" />
-        <button id="addTask" class="add-task button-blocked" disabled>Добавить задачу</button>
-      </form>
+    <div id="board" class="board">
+      <button class="add-sticker" id="newSticker" title="добавить новый стикер">
+        <span class="material-icons">
+          note_add
+        </span>
+      </button>
 
-      <div class="todo-wrapper">
-        <ul id="todoList" class="todo-list"></ul>
-      </div>
+      <div id="sticksContainer" class="sticks-container"></div>
     </div>
 
+    <script id="templateSticker" type="text/template">
+      <div class="stickers" data-id= {{id}}>
+        <button class="stickers__btn-delete" title="удалить стикер">
+          <span class="material-icons">delete_forever</span>
+        </button>
+        <textarea class="stickers__body">{{description}}</textarea>
+      </div>;
+    </script>
+
     <script src="./scripts/HTTPRequests.js"></script>
-    <script src="./scripts/TodoList.js"></script>
+    <script src="./scripts/BoardStickers.js"></script>
     <script src="./scripts/app.js"></script>
   </body>
 </html>
