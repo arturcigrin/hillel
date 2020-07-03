@@ -53,9 +53,7 @@ $(document).ready(() => {
 
     load();
 
-    $(this).toggleClass(CLASS_TASK_DONE)
-      ? updateTask(taskFind($taskId)[0]).finally(loadEnd)
-      : updateTask(taskFind($taskId)[0]).finally(loadEnd);
+    $(this).toggleClass(CLASS_TASK_DONE) ? updateTask(taskFind($taskId)[0]).finally(loadEnd) : null;
   }
 
   function init() {
@@ -99,9 +97,10 @@ $(document).ready(() => {
   }
 
   function createTemplate({ id, isDone, title }) {
-    return isDone
-      ? $taskTemplate.replace('{{id}}', id).replace('{{title}}', title).replace('{{isDone}}', CLASS_TASK_DONE)
-      : $taskTemplate.replace('{{id}}', id).replace('{{title}}', title).replace('{{isDone}}', '');
+    return $taskTemplate
+      .replace('{{id}}', id)
+      .replace('{{title}}', title)
+      .replace('{{isDone}}', isDone ? CLASS_TASK_DONE : '');
   }
 
   function insertTask(tasks) {
