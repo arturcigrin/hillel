@@ -49,7 +49,7 @@ $(document).ready(() => {
     e.stopPropagation();
     const $taskId = $(this).attr(ATTR_DATA_ID);
 
-    $(this).toggleClass(CLASS_TASK_DONE) ? updateTask(taskFind($taskId)) : updateTask(taskFind($taskId));
+    $(this).toggleClass(CLASS_TASK_DONE) ? updateTask(taskFind($taskId)[0]) : updateTask(taskFind($taskId)[0]);
   }
 
   function init() {
@@ -85,7 +85,7 @@ $(document).ready(() => {
   }
 
   function removeTaskInTaskList(id) {
-    TASK_LIST = TASK_LIST.filter((task) => task.id != id);
+    TASK_LIST = $(TASK_LIST).not((index, el) => el.id == id);
   }
 
   function renderTaskList(taskList) {
@@ -103,7 +103,7 @@ $(document).ready(() => {
   }
 
   function taskFind(id) {
-    return TASK_LIST.find((task) => task.id == id);
+    return $(TASK_LIST).not((index, el) => el.id != id);
   }
 
   function load() {
