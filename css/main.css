@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh7USew8.ttf) format('truetype');
+}
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -6,100 +13,97 @@
 body {
   position: relative;
 }
-.board {
-  position: relative;
-  height: auto;
+body {
+  background: #f8f9fa;
 }
-.board::before {
-  content: '';
-  display: table;
-}
-.add-sticker {
-  position: absolute;
-  right: 0;
-  display: inline-block;
-  padding: 2px 50px;
-  background-color: #32cd32;
-  color: #fff;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-.sticks-container {
-  margin-top: 50px;
-  padding: 20px 1%;
-  font-size: 0;
-}
-.stickers {
-  display: inline-block;
-  width: 30%;
-  height: 150px;
-  margin-left: 3%;
-  margin-bottom: 10%;
-  text-align: left;
-  font-size: 18px;
-}
-.stickers__btn-delete {
+.wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100%;
-  padding: 5px 0;
-  background: #ff4500;
-  color: #fff;
-  border: none;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.input-task {
+  width: 75%;
+  border-radius: 5px;
+  font-size: 13px;
+  padding-left: 10px;
+  color: #000;
   outline: none;
+  border-color: transparent;
   cursor: pointer;
 }
-.stickers__btn-delete > .material-icons {
-  color: #fff;
+.input-task:focus {
+  border-color: #c9edf2;
 }
-.stickers__body {
+.btn-add-task {
   display: block;
-  width: 100%;
-  height: 100%;
-  padding: 10px 20px;
-  resize: none;
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #0081fe;
+  color: #fff;
   border: none;
+}
+.btn-add-task:focus {
   outline: none;
-  background: #fae477;
+  border: none;
 }
-.http-error {
-  text-align: center;
-  font-size: 32px;
+.task-list {
+  width: 80%;
+  margin: 0;
+  padding: 0;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  list-style-type: none;
+}
+.task {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  padding: 4px 10px;
+  padding-right: 10%;
+  text-align: left;
+  background: #fffacd;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-bottom: 8px;
   font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
 }
-.load {
+.task .material-icons {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-.load .wrapper-loading {
-  position: fixed;
   top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 0;
+  right: 5%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: #ff0000;
+  cursor: pointer;
 }
-.load .wrapper-loading .loading {
-  font-size: 24px;
-  font-weight: bold;
-  color: red;
+.task:last-child {
+  margin-bottom: 0;
 }
-.load .wrapper-loading .color {
-  color: yellowgreen;
+.task-done {
+  background: #00fa9a !important;
 }
-.none {
-  display: none;
+@media (min-width: 768px) {
+  .btn-add-task {
+    padding: 8px 27px;
+    font-size: 18px;
+  }
+  .input-task {
+    font-size: 18px;
+  }
+  .task {
+    padding: 3px 10px;
+    padding-right: 10%;
+    font-size: 19px;
+  }
+  .task .material-icons {
+    font-size: 25px !important;
+  }
 }

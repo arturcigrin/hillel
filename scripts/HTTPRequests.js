@@ -9,14 +9,15 @@ class HTTPRequests {
     });
   }
 
-  POST(url) {
+  POST(url, title) {
     return fetch(url, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
       body: JSON.stringify({
-        description: '',
+        isDone: false,
+        title,
       }),
     }).then((res) => {
       if (res.ok && res.status === 201) {
@@ -27,13 +28,13 @@ class HTTPRequests {
     });
   }
 
-  PUT(url, sticker) {
+  PUT(url, task) {
     return fetch(url, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify(sticker),
+      body: JSON.stringify(task),
     }).then((res) => {
       if (res.ok && res.status === 200) {
         return res.json();
