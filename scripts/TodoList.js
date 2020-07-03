@@ -39,9 +39,10 @@ $(document).ready(() => {
     const taskId = $task.attr(ATTR_DATA_ID);
 
     load();
+    $task.addClass(CLASS_BTN_DISABLED);
 
     deleteTask(taskId)
-      .then(() => $task.fadeOut(500, () => $task.remove()))
+      .then(() => $task.fadeOut(100, () => $task.remove()))
       .then(removeTaskInTaskList.bind(null, taskId))
       .finally(loadEnd);
   }
