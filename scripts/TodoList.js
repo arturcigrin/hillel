@@ -38,7 +38,7 @@ $(document).ready(() => {
     e.stopPropagation();
 
     const $task = $(this).parent(`.${CLASS_TASK}`);
-    const $taskId = task.attr(ATTR_DATA_ID);
+    const $taskId = $task.attr(ATTR_DATA_ID);
 
     deleteTask($taskId)
       .then(() => $task.remove())
