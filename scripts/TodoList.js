@@ -41,8 +41,8 @@ $(document).ready(() => {
     const taskId = $task.attr(ATTR_DATA_ID);
 
     deleteTask(taskId)
-      .then(() => $task.remove())
-      .then(removeTaskInTaskList(taskId));
+      .then(() => $task.fadeOut(500, () => $task.remove()))
+      .then(removeTaskInTaskList.bind(null, taskId));
   }
 
   function onClickUpdateTask(e) {
