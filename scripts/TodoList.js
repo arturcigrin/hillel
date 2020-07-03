@@ -4,7 +4,7 @@ $(document).ready(() => {
   let TASK_LIST = [];
   const ATTR_DISABLED = 'disabled';
   const ATTR_DATA_ID = 'data-id';
-  const BTN_ADD_STYLE = { loading: { opacity: 0.4 }, default: { opacity: 1 } };
+  const CLASS_BTN_DISABLED = 'btn-disabled';
   const CLASS_TASK_DONE = 'task-done';
   const CLASS_BTN_DELETE = 'btn-delete';
   const CLASS_TASK = 'task';
@@ -108,11 +108,11 @@ $(document).ready(() => {
 
   function load() {
     $btnAddTask.attr(ATTR_DISABLED, true);
-    $btnAddTask.css(BTN_ADD_STYLE.loading);
+    $btnAddTask.addClass(CLASS_BTN_DISABLED);
   }
 
   function loadEnd() {
-    $btnAddTask.css(BTN_ADD_STYLE.default);
+    $btnAddTask.removeClass(CLASS_BTN_DISABLED);
     $btnAddTask.removeAttr(ATTR_DISABLED);
   }
 });
