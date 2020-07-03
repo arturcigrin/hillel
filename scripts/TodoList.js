@@ -37,19 +37,19 @@ $(document).ready(() => {
   function onClickRemoveTask(e) {
     e.stopPropagation();
 
-    const task = $(this).parent(`.${CLASS_TASK}`);
-    const taskId = task.attr(ATTR_DATA_ID);
+    const $task = $(this).parent(`.${CLASS_TASK}`);
+    const $taskId = task.attr(ATTR_DATA_ID);
 
-    deleteTask(taskId)
-      .then(() => task.remove())
-      .then(removeTaskInTaskList(taskId));
+    deleteTask($taskId)
+      .then(() => $task.remove())
+      .then(removeTaskInTaskList($taskId));
   }
 
   function onClickUpdateTask(e) {
     e.stopPropagation();
-    const taskId = $(this).attr(ATTR_DATA_ID);
+    const $taskId = $(this).attr(ATTR_DATA_ID);
 
-    $(this).toggleClass(CLASS_TASK_DONE) ? updateTask(taskFind(taskId)) : updateTask(taskFind(taskId));
+    $(this).toggleClass(CLASS_TASK_DONE) ? updateTask(taskFind($taskId)) : updateTask(taskFind($taskId));
   }
 
   function init() {
