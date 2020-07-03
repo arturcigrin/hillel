@@ -16,8 +16,6 @@ $(document).ready(() => {
   const $taskTemplate = $('#taskTemplate').html();
 
   $btnAddTask.on('click', onClickBtnAdd);
-  $taskList.on('click', `.${CLASS_BTN_DELETE}`, onClickRemoveTask);
-  $taskList.on('click', `.${CLASS_TASK}`, onClickUpdateTask);
 
   init();
 
@@ -40,16 +38,23 @@ $(document).ready(() => {
     const $task = $(this).parent(`.${CLASS_TASK}`);
     const taskId = $task.attr(ATTR_DATA_ID);
 
+    load();
+
     deleteTask(taskId)
       .then(() => $task.fadeOut(500, () => $task.remove()))
-      .then(removeTaskInTaskList.bind(null, taskId));
+      .then(removeTaskInTaskList.bind(null, taskId))
+      .finally(loadEnd);
   }
 
   function onClickUpdateTask(e) {
     e.stopPropagation();
     const $taskId = $(this).attr(ATTR_DATA_ID);
 
-    $(this).toggleClass(CLASS_TASK_DONE) ? updateTask(taskFind($taskId)[0]) : updateTask(taskFind($taskId)[0]);
+    load();
+
+    $(this).toggleClass(CLASS_TASK_DONE)
+      ? updateTask(taskFind($taskId)[0]).finally(loadEnd)
+      : updateTask(taskFind($taskId)[0]).finally(loadEnd);
   }
 
   function init() {
@@ -109,10 +114,14 @@ $(document).ready(() => {
   function load() {
     $btnAddTask.attr(ATTR_DISABLED, true);
     $btnAddTask.addClass(CLASS_BTN_DISABLED);
+    $taskList.off('click', onClickRemoveTask);
+    $taskList.off('click', onClickUpdateTask);
   }
 
   function loadEnd() {
     $btnAddTask.removeClass(CLASS_BTN_DISABLED);
     $btnAddTask.removeAttr(ATTR_DISABLED);
+    $taskList.on('click', `.${CLASS_BTN_DELETE}`, onClickRemoveTask);
+    $taskList.on('click', `.${CLASS_TASK}`, onClickUpdateTask);
   }
 });
