@@ -47,8 +47,8 @@ class ContactList {
     ContactList.LOADING.loading();
 
     this.$btnCreate.on('click', this.onClickBtnCreateUser);
-
-    $(this.$tbody).on('click', this.onClickBodyTable);
+    this.$tbody.on('click', `.${ContactList.CLASS_BTN_DELETE}`, this.onClickBtnDelete);
+    this.$tbody.on('click', `.${ContactList.CLASS_TD_BODY}`, this.onClickContact);
 
     this._getContact()
       .then(this.setContactList)
@@ -57,6 +57,23 @@ class ContactList {
       .catch(ContactList.httpError)
       .finally(ContactList.LOADING.loadingEnd);
   }
+
+  onClickBtnDelete = (e) => {
+    e.stopPropagation();
+
+    const contactEl = $(e.target).closest(`[${ContactList.ATTRIBUTE_DATA_ID}]`);
+    this.removeContact(contactEl.data('id'), contactEl);
+  };
+
+  onClickContact = (e) => {
+    e.stopPropagation();
+
+    const contactEl = $(e.target).closest(`[${ContactList.ATTRIBUTE_DATA_ID}]`);
+    const idElement = contactEl.data('id');
+
+    this.setValueInputs(idElement);
+    this.createModalWindow(this.updateContact.bind(this, idElement, contactEl), ContactList.TITTLE_MODAL_WINDOW).dialog('open');
+  };
 
   _getContact() {
     return ContactList.XHR.GET(ContactList.URL);
@@ -157,23 +174,6 @@ class ContactList {
     e.preventDefault();
 
     this.createModalWindow(this.createUser.bind(this)).dialog('open');
-  };
-
-  onClickBodyTable = (e) => {
-    switch (true) {
-      case $(e.target).hasClass(ContactList.CLASS_BTN_DELETE):
-        const contactEl = $(e.target).closest(`[${ContactList.ATTRIBUTE_DATA_ID}]`);
-        this.removeContact(contactEl.data('id'), contactEl);
-        break;
-
-      case $(e.target).hasClass(ContactList.CLASS_TD_BODY):
-        const element = $(e.target).closest(`[${ContactList.ATTRIBUTE_DATA_ID}]`);
-        const idElement = element.data('id');
-
-        this.setValueInputs(idElement);
-        this.createModalWindow(this.updateContact.bind(this, idElement, element), ContactList.TITTLE_MODAL_WINDOW).dialog('open');
-        break;
-    }
   };
 
   removeContact = (id, el) => {
