@@ -72,6 +72,12 @@ body {
   color: red;
   cursor: pointer;
 }
+.btn-delete:hover {
+  color: #fff;
+  background: red;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
 .td-delete {
   vertical-align: middle;
   padding-right: 1%;
