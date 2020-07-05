@@ -46,7 +46,7 @@ class ContactList {
   init() {
     ContactList.LOADING.loading();
 
-    this.$btnCreate.on('click', () => this.createModalWindow(this.createUser.bind(this)).dialog('open'));
+    this.$btnCreate.on('click', this.onClickBtnCreateUser);
 
     $(this.$tbody).on('click', this.onClickBodyTable);
 
@@ -152,6 +152,12 @@ class ContactList {
       .catch(ContactList.httpError)
       .finally(ContactList.LOADING.loadingEnd);
   }
+
+  onClickBtnCreateUser = (e) => {
+    e.preventDefault();
+
+    this.createModalWindow(this.createUser.bind(this)).dialog('open');
+  };
 
   onClickBodyTable = (e) => {
     switch (true) {
