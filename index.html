@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./libs/jQuery_UI/jquery-ui.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -10,43 +11,73 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
     <link rel="stylesheet" href="./libs/normalize/normalize.css" />
     <link rel="stylesheet" href="./css/main.css" />
-    <title>Lesson 20 jQuery</title>
+    <title>Lesson 21 Contact List</title>
   </head>
   <body>
-    <div class="container-lg">
+    <div class="container-xl">
       <div class="row">
         <div class="col">
-          <div class="wrapper mt-5">
-            <input id="inputTask" class="input-task" type="text" placeholder="Введите новую задачу" />
-            <button id="addNewTask" class="btn-add-task">Add</button>
-          </div>
-        </div>
-      </div>
+          <div class="wrapper-content pt-5 text-right">
+            <button id="create-user" type="button" class="btn btn-success btn-create mb-3">Создать новый контакт</button>
 
-      <div class="row">
-        <div class="col">
-          <ul id="taskList" class="task-list"></ul>
+            <table id="tableContact" class="table-contact mb-5">
+              <thead class="thead-contact">
+                <tr>
+                  <td class="td-contact">Name</td>
+                  <td class="td-contact">Surname</td>
+                  <td class="td-contact">Phone</td>
+                  <td class="td-contact" colspan="2">Email</td>
+                </tr>
+              </thead>
+              <tbody id="bodyContact" class="tbody-contact"></tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
 
-    <script id="taskTemplate" type="text/template">
-      <li class="task {{isDone}}" data-id="{{id}}">
-           {{title}}
-           <span class="material-icons btn-delete" title="Удалить задачу">
-             delete_forever
-           </span>
-         </li>
+    <div id="dialog-form" title="Create new user" class="d-none">
+      <p class="validateTips">All form fields are required.</p>
+
+      <form>
+        <fieldset>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" value="Jane " class="text ui-widget-content ui-corner-all" />
+
+          <label for="surname">Surname</label>
+          <input type="text" name="surname" id="surname" value="Smith" class="text ui-widget-content ui-corner-all" />
+
+          <label for="phone">Phone</label>
+          <input type="text" name="phone" id="phone" value="+38067-123-45-67" class="text ui-widget-content ui-corner-all" />
+
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all" />
+
+          <input type="submit" tabindex="-1" style="position: absolute; top: -1000px;" />
+        </fieldset>
+      </form>
+    </div>
+
+    <script id="templateContact" type="text/template">
+      <tr data-id= {{id}}>
+         <td class="td-body">{{name}} </td>
+         <td class="td-body">{{surname}}</td>
+         <td class="td-body">{{phone}}</td>
+         <td class="td-body border-right-none"> {{email}}</td>
+         <td class="td-body td-delete">
+         <span class="material-icons btn-delete" title="Удалить контакт">delete</span>
+         </td>
+       </tr>
     </script>
 
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous"
-    ></script>
-    <script src="./scripts/HTTPRequests.js"></script>
-    <script src="./scripts/TodoList.js"></script>
+    <script defer src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./scripts/HTTPRequests.js" defer></script>
+    <script src="./scripts/HTTPLoading.js" defer></script>
+    <script src="./scripts/ContactList.js" defer></script>
+    <script src="./scripts/app.js" defer></script>
   </body>
 </html>

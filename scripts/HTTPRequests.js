@@ -9,16 +9,13 @@ class HTTPRequests {
     });
   }
 
-  POST(url, title) {
+  POST(url, userContact) {
     return fetch(url, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify({
-        isDone: false,
-        title,
-      }),
+      body: JSON.stringify(userContact),
     }).then((res) => {
       if (res.ok && res.status === 201) {
         return res.json();

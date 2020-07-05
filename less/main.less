@@ -1,107 +1,84 @@
 @import './utils.less';
-body {
-  background: #f8f9fa;
-}
+@import './HTTPLoading.less';
 
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
-.input-task {
-  width: 75%;
-  border-radius: 5px;
-  font-size: 13px;
-  padding-left: 10px;
-  color: #000;
-  outline: none;
-  border-color: transparent;
-  cursor: pointer;
-  &:focus {
-    border-color: #c9edf2;
-  }
-}
-
-.btn-add-task {
-  display: block;
-  padding: 5px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 5px;
-  background-color: #0081fe;
-  color: #fff;
-  border: none;
-
-  &:focus {
-    outline: none;
-    border: none;
-  }
-}
-
-.task-list {
-  width: 80%;
-  margin: 0;
-  padding: 0;
+.wrapper-content {
+  width: 90%;
   margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  list-style-type: none;
 }
 
-.task {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  padding: 4px 10px;
-  padding-right: 10%;
-  text-align: left;
-  background: #fffacd;
-  border: 1px solid #000;
-  border-radius: 5px;
-  margin-bottom: 8px;
+.table-contact {
+  width: 100%;
+  text-align: center;
+  color: #fff;
   font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.1rem;
+}
 
-  .material-icons {
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translateY(-50%);
-    color: #ff0000;
-    cursor: pointer;
+.thead-contact {
+  background: #007dff;
+}
+
+.td-contact {
+  padding: 9px 5px;
+}
+
+.tbody-contact {
+  color: #000;
+
+  tr {
+    &:nth-child(odd) {
+      background: #eee;
+    }
   }
+}
 
+.td-body {
+  padding: 4px 5px;
+  border-right: 1px solid #777;
+  font-size: 12px;
   &:last-child {
-    margin-bottom: 0;
+    border-right: none;
   }
 }
 
-.task-done {
-  background: #00fa9a !important;
+.btn-delete {
+  color: red;
+  cursor: pointer;
 }
 
-.btn-disabled {
-  opacity: 0.4;
+.td-delete {
+  vertical-align: middle;
+  padding-right: 1%;
+}
+
+.border-right-none {
+  border-right: none !important;
 }
 
 @media (min-width: 768px) {
-  .btn-add-task {
-    padding: 8px 27px;
-    font-size: 18px;
+  .table-contact {
+    font-size: 15px;
   }
 
-  .input-task {
+  .td-body {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .table-contact {
     font-size: 18px;
   }
+  .td-body {
+    font-size: 17px;
+  }
+}
 
-  .task {
-    padding: 3px 10px;
-    padding-right: 10%;
-    font-size: 19px;
-
-    .material-icons {
-      font-size: 25px !important;
-    }
+.btn-success {
+  &:focus {
+    border-color: transparent;
+    outline: none;
+    box-shadow: none;
   }
 }
