@@ -58,6 +58,12 @@ class ContactList {
       .finally(ContactList.LOADING.loadingEnd);
   }
 
+  onClickBtnCreateUser = (e) => {
+    e.preventDefault();
+
+    this.createModalWindow(this.createUser.bind(this)).dialog('open');
+  };
+
   onClickBtnDelete = (e) => {
     e.stopPropagation();
 
@@ -169,12 +175,6 @@ class ContactList {
       .catch(ContactList.httpError)
       .finally(ContactList.LOADING.loadingEnd);
   }
-
-  onClickBtnCreateUser = (e) => {
-    e.preventDefault();
-
-    this.createModalWindow(this.createUser.bind(this)).dialog('open');
-  };
 
   removeContact = (id, el) => {
     ContactList.LOADING.loading();
