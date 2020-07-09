@@ -11,7 +11,7 @@
   font-family: 'Lato', sans-serif;
 }
 body {
-  position: relative;
+  background: #69757d;
 }
 .loading {
   text-align: center;
@@ -36,74 +36,77 @@ body {
   font-size: 23px;
   font-weight: bold;
 }
-.wrapper-content {
-  width: 90%;
-  margin: auto;
+body,
+html {
+  height: 100%;
 }
-.table-contact {
-  width: 100%;
-  text-align: center;
-  color: #fff;
+.btn-create {
   font-weight: bold;
-  font-size: 13px;
-  letter-spacing: 0.1rem;
-}
-.thead-contact {
-  background: #007dff;
-}
-.td-contact {
-  padding: 9px 5px;
-}
-.tbody-contact {
-  color: #000;
-}
-.tbody-contact tr:nth-child(odd) {
-  background: #eee;
-}
-.td-body {
-  padding: 4px 5px;
-  border-right: 1px solid #777;
-  font-size: 12px;
-}
-.td-body:last-child {
-  border-right: none;
-}
-.btn-delete {
-  color: red;
+  padding: 3px 10%;
   cursor: pointer;
 }
-.btn-delete:hover {
-  color: #fff;
-  background: red;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-.td-delete {
-  vertical-align: middle;
-  padding-right: 1%;
-}
-.border-right-none {
-  border-right: none !important;
-}
-@media (min-width: 768px) {
-  .table-contact {
-    font-size: 15px;
-  }
-  .td-body {
-    font-size: 15px;
-  }
-}
-@media (min-width: 992px) {
-  .table-contact {
-    font-size: 18px;
-  }
-  .td-body {
-    font-size: 17px;
-  }
-}
-.btn-success:focus {
-  border-color: transparent;
+.btn-create:focus,
+.btn-create:active {
   outline: none;
+  border: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+  background: #ffc107;
+}
+.btn-create .icon-create {
+  display: inline-block;
+  color: #fff;
+  font-size: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+}
+.stickers {
+  position: absolute;
+}
+.stickers .btn-delete {
+  display: block;
+  padding: 2px 0;
+  background: #a61525;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+.stickers .btn-delete:hover {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: #a61525;
+  background: #ffbe00;
+}
+.stickers__body {
+  width: 100%;
+  height: 85%;
+  padding: 10px 5px;
+  padding-right: 20px;
+  resize: none;
+}
+.stickers__body::-webkit-scrollbar {
+  background: transparent;
+}
+.stickers__body:hover::-webkit-scrollbar {
+  background: #ffbe00;
+}
+.error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  font-weight: bold;
+  font-size: 32px;
+  color: #fff;
+}
+.wrapper {
+  position: relative;
+  height: 100%;
 }

@@ -9,13 +9,13 @@ class HTTPRequests {
     });
   }
 
-  POST(url, userContact) {
+  POST(url, stickers) {
     return fetch(url, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify(userContact),
+      body: JSON.stringify(stickers),
     }).then((res) => {
       if (res.ok && res.status === 201) {
         return res.json();

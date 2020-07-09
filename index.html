@@ -6,78 +6,45 @@
     <link rel="stylesheet" href="./libs/jQuery_UI/jquery-ui.css" />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
     <link rel="stylesheet" href="./libs/normalize/normalize.css" />
     <link rel="stylesheet" href="./css/main.css" />
-    <title>Lesson 21 Contact List</title>
+    <title>Lesson 22 Stickers v2.0</title>
   </head>
   <body>
-    <div class="container-xl">
-      <div class="row">
-        <div class="col">
-          <div class="wrapper-content pt-5 text-right">
-            <button id="create-user" type="button" class="btn btn-success btn-create mb-3">Создать новый контакт</button>
+    <button id="btnCreate" type="button" class="btn btn-warning btn-create" title="Создать стикер">
+      <span class="material-icons icon-create">
+        note_add
+      </span>
+    </button>
 
-            <table id="tableContact" class="table-contact mb-5">
-              <thead class="thead-contact">
-                <tr>
-                  <td class="td-contact">Name</td>
-                  <td class="td-contact">Surname</td>
-                  <td class="td-contact">Phone</td>
-                  <td class="td-contact" colspan="2">Email</td>
-                </tr>
-              </thead>
-              <tbody id="bodyContact" class="tbody-contact"></tbody>
-            </table>
-          </div>
-        </div>
+    <div id="stickersContainer" class="wrapper"></div>
+    <iframe>
+      <script type="text/javascript">
+        alert('Its a magic');
+      </script>
+    </iframe>
+    <script id="stickersTemplate" type="text/template">
+      <div class="stickers" data-id = {{id}} style="width:{{width}}px; height:{{height}}px; top:{{y}}px; left:{{x}}px;">
+        <span class="material-icons btn-delete" title="нажать удалить стикер или зажать и переместить">
+          delete_sweep
+        </span>
+        <textarea class="stickers__body">
+         {{description}}
+        </textarea>
       </div>
-    </div>
-
-    <div id="dialog-form" title="Create new user" class="d-none">
-      <p class="validateTips">All form fields are required.</p>
-
-      <form>
-        <fieldset>
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name" value="Jane " class="text ui-widget-content ui-corner-all" />
-
-          <label for="surname">Surname</label>
-          <input type="text" name="surname" id="surname" value="Smith" class="text ui-widget-content ui-corner-all" />
-
-          <label for="phone">Phone</label>
-          <input type="text" name="phone" id="phone" value="+38067-123-45-67" class="text ui-widget-content ui-corner-all" />
-
-          <label for="email">Email</label>
-          <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all" />
-
-          <input type="submit" tabindex="-1" style="position: absolute; top: -1000px;" />
-        </fieldset>
-      </form>
-    </div>
-
-    <script id="templateContact" type="text/template">
-      <tr data-id= {{id}}>
-         <td class="td-body">{{name}} </td>
-         <td class="td-body">{{surname}}</td>
-         <td class="td-body">{{phone}}</td>
-         <td class="td-body border-right-none"> {{email}}</td>
-         <td class="td-body td-delete">
-         <span class="material-icons btn-delete" title="Удалить контакт">delete</span>
-         </td>
-       </tr>
     </script>
 
     <script defer src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./scripts/HTTPRequests.js" defer></script>
     <script src="./scripts/HTTPLoading.js" defer></script>
-    <script src="./scripts/ContactList.js" defer></script>
+    <script src="./scripts/Stickers.js" defer></script>
     <script src="./scripts/app.js" defer></script>
   </body>
 </html>

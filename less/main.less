@@ -1,90 +1,79 @@
 @import './utils.less';
 @import './HTTPLoading.less';
 
-.wrapper-content {
-  width: 90%;
-  margin: auto;
+body,
+html {
+  height: 100%;
 }
-
-.table-contact {
-  width: 100%;
-  text-align: center;
-  color: #fff;
+.btn-create {
   font-weight: bold;
-  font-size: 13px;
-  letter-spacing: 0.1rem;
+  padding: 3px 10%;
+  cursor: pointer;
+
+  &:focus,
+  &:active {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background: #ffc107;
+  }
+  .icon-create {
+    display: inline-block;
+    color: #fff;
+    font-size: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+  }
 }
 
-.thead-contact {
-  background: #007dff;
-}
+.stickers {
+  position: absolute;
 
-.td-contact {
-  padding: 9px 5px;
-}
+  .btn-delete {
+    display: block;
+    padding: 2px 0;
+    background: #a61525;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
 
-.tbody-contact {
-  color: #000;
-
-  tr {
-    &:nth-child(odd) {
-      background: #eee;
+    &:hover {
+      transition: 0.5s;
+      color: #a61525;
+      background: #ffbe00;
     }
   }
 }
 
-.td-body {
-  padding: 4px 5px;
-  border-right: 1px solid #777;
-  font-size: 12px;
-  &:last-child {
-    border-right: none;
+.stickers__body {
+  width: 100%;
+  height: 85%;
+  padding: 10px 5px;
+  padding-right: 20px;
+  resize: none;
+
+  &::-webkit-scrollbar {
+    background: transparent;
   }
-}
-
-.btn-delete {
-  color: red;
-  cursor: pointer;
-
   &:hover {
-    color: #fff;
-    background: red;
-    transition: 0.5s;
+    &::-webkit-scrollbar {
+      background: #ffbe00;
+    }
   }
 }
 
-.td-delete {
-  vertical-align: middle;
-  padding-right: 1%;
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-weight: bold;
+  font-size: 32px;
+  color: #fff;
 }
 
-.border-right-none {
-  border-right: none !important;
-}
-
-@media (min-width: 768px) {
-  .table-contact {
-    font-size: 15px;
-  }
-
-  .td-body {
-    font-size: 15px;
-  }
-}
-
-@media (min-width: 992px) {
-  .table-contact {
-    font-size: 18px;
-  }
-  .td-body {
-    font-size: 17px;
-  }
-}
-
-.btn-success {
-  &:focus {
-    border-color: transparent;
-    outline: none;
-    box-shadow: none;
-  }
+.wrapper {
+  position: relative;
+  height: 100%;
 }
