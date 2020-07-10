@@ -22,6 +22,7 @@ class Stickers {
     this.templateStickers = template;
     this._url = url;
     this.list_stickers = [];
+
     this.init();
   }
 
