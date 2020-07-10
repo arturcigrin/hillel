@@ -21,7 +21,7 @@ class Stickers {
     this.$stickersContainerEl = stickersContainer;
     this.templateStickers = template;
     this._url = url;
-    this.list_stickers = [];
+    this.listStickers = [];
 
     this.init();
   }
@@ -39,41 +39,18 @@ class Stickers {
   }
 
   static addStickerInList(sticker) {
-    this.list_stickers.push(sticker);
+    this.listStickers.push(sticker);
     return sticker;
   }
 
   static findSticker(id) {
-    return this.list_stickers.find((stick) => stick.id == id);
+    return this.listStickers.find((stick) => stick.id == id);
   }
 
   static removeSticker(id, el) {
-    this.list_stickers = this.list_stickers.filter((sticker) => sticker.id != id);
+    this.listStickers = this.listStickers.filter((sticker) => sticker.id != id);
 
     el.remove();
-  }
-
-  static draggableStikers(e) {
-    $(this.$stickersContainerEl)
-      .find(`.${Stickers.CLASS_STICKERS}`)
-      .draggable({
-        containment: `${Stickers.ID_CONTAINER}`,
-        handle: `.${Stickers.CLASS_BTN_DELETE}`,
-        stop: this.positionStickers,
-      });
-  }
-
-  static resizableSticker() {
-    $(this.$stickersContainerEl)
-      .find(`.${Stickers.CLASS_STICKERS}`)
-      .resizable({
-        containment: `${Stickers.ID_CONTAINER}`,
-        maxHeight: 500,
-        maxWidth: 500,
-        minHeight: 100,
-        minWidth: 100,
-        stop: this.sizeStickers,
-      });
   }
 
   init() {
@@ -87,8 +64,8 @@ class Stickers {
       .then(this.setListStickers)
       .then(this.renderStickers)
       .then(this.insertTemplate)
-      .then(Stickers.draggableStikers.bind(this))
-      .then(Stickers.resizableSticker.bind(this))
+      .then(this.draggableStikers.bind(this))
+      .then(this.resizableSticker.bind(this))
       .catch(Stickers.error)
       .finally(Stickers.loadingEnd);
   }
@@ -101,8 +78,8 @@ class Stickers {
       .then(Stickers.addStickerInList.bind(this))
       .then(this.createTemplate.bind(this))
       .then(this.insertTemplate)
-      .then(Stickers.draggableStikers.bind(this))
-      .then(Stickers.resizableSticker.bind(this))
+      .then(this.draggableStikers.bind(this))
+      .then(this.resizableSticker.bind(this))
       .catch(Stickers.error)
       .finally(Stickers.loadingEnd);
   };
@@ -129,6 +106,25 @@ class Stickers {
       .catch(Stickers.error)
       .finally(Stickers.loadingEnd);
   };
+
+  draggableStikers() {
+    this.$stickersContainerEl.find(`.${Stickers.CLASS_STICKERS}`).draggable({
+      containment: `${Stickers.ID_CONTAINER}`,
+      handle: `.${Stickers.CLASS_BTN_DELETE}`,
+      stop: this.positionStickers,
+    });
+  }
+
+  resizableSticker() {
+    this.$stickersContainerEl.find(`.${Stickers.CLASS_STICKERS}`).resizable({
+      containment: `${Stickers.ID_CONTAINER}`,
+      maxHeight: 500,
+      maxWidth: 500,
+      minHeight: 100,
+      minWidth: 100,
+      stop: this.sizeStickers,
+    });
+  }
 
   positionStickers = (e, ui) => {
     const idStickers = $(e.target).data('id');
@@ -171,8 +167,8 @@ class Stickers {
   }
 
   setListStickers = (listStickers) => {
-    this.list_stickers = listStickers;
-    return this.list_stickers;
+    this.listStickers = listStickers;
+    return this.listStickers;
   };
 
   renderStickers = (listStickers) => {
