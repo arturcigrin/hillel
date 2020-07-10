@@ -132,8 +132,8 @@ class Stickers {
 
   positionStickers = (e, ui) => {
     const idStickers = $(e.target).data('id');
-
     const stick = Stickers.findSticker.call(this, idStickers);
+
     stick.x = ui.offset.left;
     stick.y = ui.offset.top;
 
@@ -144,7 +144,6 @@ class Stickers {
 
   sizeStickers = (e, ui) => {
     const idStickers = $(e.target).data('id');
-
     const stick = Stickers.findSticker.call(this, idStickers);
 
     stick.width = ui.size.width;
