@@ -112,10 +112,10 @@ class Stickers {
   };
 
   onUpdateDescriptionSticker = (e) => {
-    const id = $(e.target).closest(`.${Stickers.CLASS_STICKERS}`).data('id');
+    const idStickers = $(e.target).closest(`.${Stickers.CLASS_STICKERS}`).data('id');
+    const stick = Stickers.findSticker.call(this, idStickers);
+    const indexSticker = Stickers.findIndexSticker.call(this, idStickers);
 
-    const stick = this.list_stickers.find((stick) => stick.id == id);
-    const indexSticker = this.list_stickers.findIndex((stick) => stick.id == id);
     stick.description = $(e.target).val();
 
     Stickers.loading();
