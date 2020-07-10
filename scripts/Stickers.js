@@ -47,10 +47,6 @@ class Stickers {
     return this.list_stickers.find((stick) => stick.id == id);
   }
 
-  static findIndexSticker(id) {
-    return this.list_stickers.findIndex((stick) => stick.id == id);
-  }
-
   static removeSticker(id, el) {
     this.list_stickers = this.list_stickers.filter((sticker) => sticker.id != id);
 
@@ -114,16 +110,12 @@ class Stickers {
   onUpdateDescriptionSticker = (e) => {
     const idStickers = $(e.target).closest(`.${Stickers.CLASS_STICKERS}`).data('id');
     const stick = Stickers.findSticker.call(this, idStickers);
-    const indexSticker = Stickers.findIndexSticker.call(this, idStickers);
 
     stick.description = $(e.target).val();
 
     Stickers.loading();
 
-    this._updateSticker(stick)
-      .then((res) => this.list_stickers.splice(indexSticker, 1, res))
-      .catch(Stickers.error)
-      .finally(Stickers.loadingEnd);
+    this._updateSticker(stick).catch(Stickers.error).finally(Stickers.loadingEnd);
   };
 
   onDeleteSticker = (e) => {
@@ -142,34 +134,25 @@ class Stickers {
     const idStickers = $(e.target).data('id');
 
     const stick = Stickers.findSticker.call(this, idStickers);
-    const indexSticker = Stickers.findIndexSticker.call(this, idStickers);
-
     stick.x = ui.offset.left;
     stick.y = ui.offset.top;
 
     Stickers.loading();
 
-    this._updateSticker(stick)
-      .then((res) => this.list_stickers.splice(indexSticker, 1, res))
-      .catch(Stickers.error)
-      .finally(Stickers.loadingEnd);
+    this._updateSticker(stick).catch(Stickers.error).finally(Stickers.loadingEnd);
   };
 
   sizeStickers = (e, ui) => {
     const idStickers = $(e.target).data('id');
 
     const stick = Stickers.findSticker.call(this, idStickers);
-    const indexSticker = Stickers.findIndexSticker.call(this, idStickers);
 
     stick.width = ui.size.width;
     stick.height = ui.size.height;
 
     Stickers.loading();
 
-    this._updateSticker(stick)
-      .then((res) => this.list_stickers.splice(indexSticker, 1, res))
-      .catch(Stickers.error)
-      .finally(Stickers.loadingEnd);
+    this._updateSticker(stick).catch(Stickers.error).finally(Stickers.loadingEnd);
   };
 
   _getStikers(url) {
