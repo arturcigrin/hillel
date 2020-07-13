@@ -10,6 +10,7 @@ function calculate() {
       console.log(_arg);
       return this;
     },
+
     sum(arg2 = 0) {
       _arg += arg2;
       return this;
@@ -20,7 +21,7 @@ function calculate() {
       return this;
     },
 
-    mult(arg2) {
+    mult(arg2 = 1) {
       _arg *= arg2;
       return this;
     },
