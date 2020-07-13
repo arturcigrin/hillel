@@ -1,0 +1,23 @@
+{
+  "name": "calculate",
+  "version": "1.0.0",
+  "description": "calulate node js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arturcigrin/hillel.git"
+  },
+  "keywords": [
+    "js",
+    "nodejs"
+  ],
+  "author": "chigrin artur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arturcigrin/hillel/issues"
+  },
+  "homepage": "https://github.com/arturcigrin/hillel#readme"
+}
