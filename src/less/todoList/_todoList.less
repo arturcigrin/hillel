@@ -1,0 +1,113 @@
+.btn-add {
+  background-color: #000;
+
+  &:disabled {
+    background: #000;
+    .material-icons {
+      color: #eee;
+    }
+  }
+
+  .material-icons {
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: #00ff7f;
+  }
+}
+
+.table-todos {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 45px;
+
+  .thead {
+    background: #2f4f4f;
+    text-align: center;
+    font-weight: normal;
+    color: #fff;
+
+    tr > td {
+      padding: 5px 15px;
+      border-right: 1px solid #000;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.task {
+  border-bottom: 1px solid #000;
+  font-size: 14px;
+  background: #eee;
+  text-align: center;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+.task-id {
+  border-right: 1px solid #000;
+}
+.task-title {
+  padding: 7px 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  .btn-delete {
+    width: 40%;
+    font-size: 18px;
+    margin-left: 5px;
+    color: red;
+    cursor: pointer;
+
+    &:hover {
+      background: red;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .table-todos {
+    .thead {
+      font-weight: bold;
+    }
+  }
+
+  .task {
+    font-size: 18px;
+  }
+
+  .btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    .btn-delete {
+      font-size: 24px;
+      margin-left: 0;
+      color: red;
+      cursor: pointer;
+
+      &:hover {
+        background: red;
+        color: #fff;
+        transition: 0.5s;
+      }
+    }
+  }
+}

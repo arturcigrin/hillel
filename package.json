@@ -1,10 +1,10 @@
 {
-  "name": "calculate",
+  "name": "todo_list",
   "version": "1.0.0",
-  "description": "calulate node js",
+  "description": "todo_list gulp",
   "main": "app.js",
   "scripts": {
-    "start": "node ./app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -12,12 +12,26 @@
   },
   "keywords": [
     "js",
-    "nodejs"
+    "jquery",
+    "gulp"
   ],
-  "author": "chigrin artur",
+  "author": "Chigrin Artur",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/arturcigrin/hillel/issues"
   },
-  "homepage": "https://github.com/arturcigrin/hillel#readme"
+  "homepage": "https://github.com/arturcigrin/hillel#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify-es": "^2.0.0",
+    "less-plugin-autoprefix": "^2.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1"
+  }
 }
