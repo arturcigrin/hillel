@@ -4,11 +4,11 @@ class ModelList {
     this.todoList = [];
   }
 
-  getData() {
+  getData = () => {
     return fetch(this.url)
       .then((res) => (res.ok && res.status === 200 ? res.json() : Promise.reject(res)))
       .then(this.setData);
-  }
+  };
 
   setData = (data) => {
     return (this.todoList = data.map((todo) => {
@@ -25,12 +25,12 @@ class ModelList {
     return (this.todoList = [...this.todoList, model]);
   };
 
-  deleteTodo(id) {
+  deleteTodo = (id) => {
     const model = this.todoList.find(({ todo }) => todo.id == id);
     this.todoList = this.todoList.filter(({ todo }) => todo.id != model.todo.id);
 
     return model.deleteTodo();
-  }
+  };
 
   addTodo = (todo) => new Model(this.url).addTodo(todo);
 
