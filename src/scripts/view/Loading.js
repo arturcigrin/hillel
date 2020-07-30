@@ -1,15 +1,11 @@
-class Loading {
-  templateLoading() {
-    return `
-      <div id='loading' class="loading">
-        <div  class="spinner-border text-warning" role="status">
-            <span class="sr-only">Loading...</span>
-         </div>
-    </div>`;
-  }
+const $ = require('jquery');
+import Template from './Template';
 
-  loading() {
-    $(this.templateLoading()).appendTo(document.body);
+export default class Loading {
+  static templateLoading = new Template();
+
+  load() {
+    $(Loading.templateLoading.getTemplateLoading()).appendTo(document.body);
   }
 
   loadingEnd() {

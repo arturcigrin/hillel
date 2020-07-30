@@ -1,50 +1,61 @@
-class Todo {
+import Template from './Template';
+const $ = require('jquery');
+
+export default class Todo {
   static CLASS_DONE = 'done';
   static CLASS_TASK = 'task';
   static CLASS_TASK_TITLE = 'task-title';
   static CLASS_BTN_DELETE = 'btn-delete';
 
-  constructor(config) {
+  constructor(container, config) {
     this.config = config;
-    this.$taskContainerEl = $('#tasksContainer');
-    this.$btnCreate = $('#btnCreate');
-    this.$inputTodo = $('#taskInput');
-    this.taskTemplate = $('#templateTask').html();
+    this.templates = new Template();
+    this.insertInEl(container, this.templates.getTemplateContainerTodo());
 
-    this.$btnCreate.on('click', this.onClickBtnAddTodo);
+    this.$taskContainerEl = $('#tasksContainer');
+    this.$inputTodo = $('#taskInput');
+    this.$btnCreate = $('#btnCreate');
+
     this.$inputTodo.on('input', this.onChangeInput);
+    this.$btnCreate.on('click', this.onClickBtnAdd);
     this.$taskContainerEl.on('click', `.${Todo.CLASS_BTN_DELETE}`, this.onClickBtnDelete);
     this.$taskContainerEl.on('click', `.${Todo.CLASS_TASK_TITLE}`, this.onClickTodo);
   }
 
-  onClickBtnDelete = (e) => {
-    const idTodo = $(e.target).closest(`.${Todo.CLASS_TASK}`).data('id');
-    this.config.onDelete(idTodo);
-  };
+  onChangeInput = () => this.btnDisabled();
 
-  onClickBtnAddTodo = (e) => {
+  onClickBtnAdd = (e) => {
     e.preventDefault();
-
-    this.config.onAddTodo({ title: this.getInputValue(), isDone: false });
+    this.config.onClickBtnAdd(this.getValueInput());
     this.$inputTodo.val('');
     this.btnDisabled();
   };
 
-  onClickTodo = (e) => {
-    const $todoEl = $(e.target).closest(`.${Todo.CLASS_TASK}`);
-    const todoId = $todoEl.data('id');
-
-    $todoEl.toggleClass(`${Todo.CLASS_DONE}`);
-
-    this.config.onClickTodo(todoId);
+  onClickBtnDelete = (e) => {
+    e.preventDefault();
+    const $el = $(e.target).closest(`.${Todo.CLASS_TASK}`);
+    const id = $el.data('id');
+    this.config.onClickBtnDelete(id);
   };
 
-  renderTasksList = (tasks) => tasks.map(this.renderModel).join('\n');
+  onClickTodo = (e) => {
+    const $el = $(e.target).closest(`.${Todo.CLASS_TASK}`);
+    const id = $el.data('id');
 
-  renderModel = (model) => this.createTemplate(model.todo);
+    $el.toggleClass(`${Todo.CLASS_DONE}`);
+    this.config.onUpdateTodo(id);
+  };
 
-  createTemplate = ({ isDone, id, title }) => {
-    return this.taskTemplate
+  insertInEl(el, whatToInsert) {
+    $(whatToInsert).appendTo(el);
+  }
+
+  renderModelList = (listModel) => listModel.map(this.createTemplate).join('\n');
+
+  createTemplate = ({ todo }) => {
+    const { id, isDone, title } = todo;
+    return this.templates
+      .getTemplateTodo()
       .replace('{{title}}', title)
       .replace(new RegExp('{{id}}', 'g'), id)
       .replace('{{isDone}}', isDone ? Todo.CLASS_DONE : '');
@@ -52,9 +63,7 @@ class Todo {
 
   insertTemplate = (template) => $(this.$taskContainerEl).html('').append(template);
 
-  onChangeInput = () => this.btnDisabled();
+  getValueInput = () => this.$inputTodo.val().trim();
 
-  getInputValue = () => this.$inputTodo.val().trim();
-
-  btnDisabled = () => this.$btnCreate.prop('disabled', !this.getInputValue());
+  btnDisabled = () => this.$btnCreate.prop('disabled', !this.getValueInput());
 }

@@ -1,55 +1,36 @@
-const TODOS_URL = 'https://5dd3d5ba8b5e080014dc4bfa.mockapi.io/todos';
+import { URL_TODO as URL } from './config';
+import Todo from '../view/Todo';
+import ModelList from '../model/ModelList';
 
-class Controller {
-  constructor() {
-    this.todoCollection = new ModelList(TODOS_URL);
-    this.todoView = new Todo({
-      onDelete: this.onDelete,
-      onAddTodo: this.onAddTodo,
-      onClickTodo: this.onClickTodo,
+export default class Controller {
+  constructor(rootEl) {
+    this.todoView = new Todo(rootEl, {
+      onClickBtnAdd: this.onClickBtnAdd,
+      onClickBtnDelete: this.onClickBtnDelete,
+      onUpdateTodo: this.onUpdateTodo,
     });
-
-    this.loadingView = new Loading();
-
+    this.listModel = new ModelList(URL);
+    this.todoList = [];
     this._init();
   }
 
   _init() {
-    this.loadingView.loading();
-    this.todoCollection
-      .getData()
-      .then(this.todoView.renderTasksList)
-      .then(this.todoView.insertTemplate)
-      .catch(this.loadingView.error)
-      .finally(this.loadingView.loadingEnd);
+    this.listModel
+      .getTodoList()
+      .then((res) => (this.todoList = res))
+      .then(this.todoView.renderModelList)
+      .then(this.todoView.insertTemplate);
   }
 
-  onDelete = (id) => {
-    this.loadingView.loading();
-
-    this.todoCollection
-      .deleteTodo(id)
-      .then(this.todoView.renderTasksList.bind(null, this.todoCollection.todoList))
-      .then(this.todoView.insertTemplate)
-      .catch(this.loadingView.error)
-      .finally(this.loadingView.loadingEnd);
+  onClickBtnAdd = (title) => {
+    this.listModel.addTodo(title).then(this.todoView.renderModelList).then(this.todoView.insertTemplate);
   };
 
-  onAddTodo = (todo) => {
-    this.loadingView.loading();
-
-    this.todoCollection
-      .addTodo(todo)
-      .then(this.todoCollection.addTodoInList)
-      .then(this.todoView.renderTasksList)
-      .then(this.todoView.insertTemplate)
-      .catch(this.loadingView.error)
-      .finally(this.loadingView.loadingEnd);
+  onClickBtnDelete = (id) => {
+    this.listModel.removeTodo(id).then(this.todoView.renderModelList).then(this.todoView.insertTemplate);
   };
 
-  onClickTodo = (id) => {
-    this.loadingView.loading();
-
-    this.todoCollection.updateTodo(id).catch(this.loadingView.error).finally(this.loadingView.loadingEnd);
+  onUpdateTodo = (id) => {
+    this.listModel.updateTodo(id);
   };
 }

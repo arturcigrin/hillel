@@ -1,43 +1,62 @@
-class ModelList {
+import Template from '../view/Template';
+import Loading from '../view/Loading';
+import Model from './Model';
+
+export default class ModelList {
   constructor(url) {
     this.url = url;
-    this.todoList = [];
+    this.loading = new Loading();
+    this.template = new Template();
+    this.listTodo = [];
   }
 
-  getData = () => {
+  getTodoList() {
+    this.loading.load();
     return fetch(this.url)
       .then((res) => (res.ok && res.status === 200 ? res.json() : Promise.reject(res)))
-      .then(this.setData);
-  };
+      .then(this.setListTodo)
+      .catch(this.loading.error)
+      .finally(this.loading.loadingEnd);
+  }
 
-  setData = (data) => {
-    return (this.todoList = data.map((todo) => {
-      const model = new Model(this.url);
-      model.setTodo(todo);
+  setListTodo = (todos) => {
+    return (this.listTodo = todos.map((todo) => {
+      const model = new Model(todo, this.url);
       return model;
     }));
   };
 
   addTodoInList = (todo) => {
-    const model = new Model(this.url);
-    model.setTodo(todo);
-
-    return (this.todoList = [...this.todoList, model]);
+    const model = new Model(todo, this.url);
+    return (this.listTodo = [...this.listTodo, model]);
   };
 
-  deleteTodo = (id) => {
-    const model = this.todoList.find(({ todo }) => todo.id == id);
-    this.todoList = this.todoList.filter(({ todo }) => todo.id != model.todo.id);
+  searchTodo = (id) => this.listTodo.find(({ todo }) => todo.id == id);
 
-    return model.deleteTodo();
-  };
+  addTodo(title) {
+    this.loading.load();
 
-  addTodo = (todo) => new Model(this.url).addTodo(todo);
+    return new Model({ title, isDone: false }, this.url)
+      .createTodo()
+      .then(this.addTodoInList)
+      .catch(this.loading.error)
+      .finally(this.loading.loadingEnd);
+  }
+
+  removeTodo(id) {
+    this.loading.load();
+    return this.searchTodo(id)
+      .deleteTodo()
+      .then(({ id }) => this.listTodo.filter(({ todo }) => todo.id != id))
+      .catch(this.loading.error)
+      .finally(this.loading.loadingEnd);
+  }
 
   updateTodo = (id) => {
-    const model = this.todoList.find(({ todo }) => todo.id == id);
-    model.todo.isDone = !model.todo.isDone;
+    this.loading.load();
 
-    return model.updateTodo();
+    const todo = this.searchTodo(id);
+
+    todo.updateTodo().catch(this.loading.error).finally(this.loading.loadingEnd);
   };
 }

@@ -1,21 +1,24 @@
 {
-  "name": "todo_list",
+  "name": "lesson3",
   "version": "1.0.0",
-  "description": "todo_list gulp",
+  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch",
+    "start": "webpack-dev-server --mode development --open"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arturcigrin/hillel.git"
   },
-  "keywords": [
-    "js",
-    "jquery",
-    "gulp"
+  "browserslist": [
+    "last 10 versions",
+    "ie >= 8"
   ],
-  "author": "Chigrin Artur",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/arturcigrin/hillel/issues"
@@ -24,20 +27,28 @@
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-syntax-class-properties": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
-    "browser-sync": "^2.26.10",
-    "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-less": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2",
-    "less-plugin-autoprefix": "^2.0.0"
+    "autoprefixer": "^9.8.5",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "install": "^0.13.0",
+    "less": "^3.12.2",
+    "less-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "npm": "^6.14.7",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^3.0.8",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
-    "jquery": "^3.5.1",
-    "jquery-ui-dist": "^1.12.1"
+    "jquery": "^3.5.1"
   }
 }
