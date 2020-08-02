@@ -3,10 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <title>Todo list</title>
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> -->
+    <title>Chat</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="container-fluid h-100vh">
+      <div class="row h-100vh no-gutters">
+        <div class="col-3 red h-100vh">
+          <ul class="list-users h-100vh">
+            <li class="user">
+              <span class="user__icon">CA</span>
+              Chigrin Artur
+            </li>
+          </ul>
+        </div>
+        <div class="col-9 h-100vh">
+          <div class="dialog h-100vh">
+            <ul id="dialogList" class="dialog-list h-100vh">
+              <!-- <li class="list__message">
+                <span class="user__icon">CA</span>
+                <span class="message">
+                  lorem ksdlfsdkfjsldfsa Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis iusto enim praesentium similique
+                  laudantium, nulla, ex fugiat dolor, asperiores officia quidem facilis iste illum ut ipsam. Minima reprehenderit est
+                  consectetur! Expedita debitis reiciendis dolorum suscipit omnis accusantium ex quibusdam cum, optio soluta commodi quidem
+                  reprehenderit dolores aperiam provident asperiores corporis. Hic quia tempore minima tenetur aspernatur culpa cumque eaque
+                  magni. Ipsa ut itaque quia repellendus, fuga praesentium dolorem quisquam suscipit tempora hic inventore ipsum sed vel
+                  consectetur necessitatibus! Animi quidem reiciendis repellat error nesciunt aperiam quo iste amet! Blanditiis, maiores.
+                  Quia illo sint ipsa quam ab soluta necessitatibus, libero minus quos veritatis qui minima commodi aliquam totam ipsam
+                  eius! Voluptatem eum sunt doloremque obcaecati molestiae voluptates voluptate, mollitia tempora in!
+                </span>
+
+                <span class="time">12:07</span>
+              </li>
+              <li class="list__message">
+                <span class="user__icon">CA</span>
+                <span class="message">
+                  lorem ksdlfsdkfjsldfsa Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis iusto enim praesentium similique
+                </span>
+
+                <span class="time">12:07</span>
+              </li>
+              <li class="list__message">
+                <span class="user__icon">CA</span>
+                <span class="message">
+                  lorem ksdlfsdkfjsldfsa Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis iusto enim praesentium similique
+                </span>
+
+                <span class="time">12:07</span>
+              </li> -->
+            </ul>
+            <div class="input-group input-group-lg">
+              <input type="text" id="inputChat" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Отправить</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

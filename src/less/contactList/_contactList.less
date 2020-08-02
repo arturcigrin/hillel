@@ -1,113 +1,86 @@
-.btn-add {
-  background-color: #000;
+.list-users {
+  background: #2a495e;
 
-  &:disabled {
-    background: #000;
-    .material-icons {
-      color: #eee;
-    }
-  }
-
-  .material-icons {
-    display: block;
-    height: 100%;
-    width: 100%;
-    color: #00ff7f;
-  }
-}
-
-.table-todos {
-  width: 90%;
-  height: 20px;
-  margin-bottom: 45px;
-
-  .thead {
-    background: #2f4f4f;
-    text-align: center;
-    font-weight: normal;
+  .user {
+    padding: 10px 15px;
+    background: #0072de;
     color: #fff;
+  }
+}
 
-    tr > td {
-      padding: 5px 15px;
-      border-right: 1px solid #000;
+.user__icon {
+  padding: 6px;
+  margin-right: 17%;
+  background: pink;
+  border-radius: 100px;
+}
 
-      &:last-child {
-        border-right: none;
-      }
+.dialog {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  padding-bottom: 0;
+}
+
+.dialog-list {
+  overflow-y: auto;
+
+  .list__message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .user__icon {
+      padding: 7px 10px;
+      border-radius: 5px;
+      margin-right: 5%;
+      text-align: center;
     }
   }
-}
 
-.task {
-  border-bottom: 1px solid #000;
-  font-size: 14px;
-  background: #eee;
-  text-align: center;
-
-  &:last-child {
-    border-bottom: none;
+  .message {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    width: 100%;
+    padding: 10px 15px;
+    background: #0074de;
+    color: #fff;
+    border-radius: 5px;
   }
 }
-.task-id {
-  border-right: 1px solid #000;
-}
-.task-title {
-  padding: 7px 15px;
-  text-align: left;
+
+.input-group-text {
+  color: #fff;
+  background: #00a4f3;
   cursor: pointer;
 }
 
-.btn-group {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-
-  .btn-delete {
-    width: 40%;
-    font-size: 18px;
-    margin-left: 5px;
-    color: red;
-    cursor: pointer;
-
-    &:hover {
-      background: red;
-      color: #fff;
-      transition: 0.5s;
-    }
-  }
+.input-group {
+  margin-top: auto;
 }
 
-@media (min-width: 768px) {
-  .table-todos {
-    .thead {
-      font-weight: bold;
-    }
-  }
+.close-connection {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 36px;
+  line-height: 29px;
+  color: #777;
+  text-align: center;
+}
 
-  .task {
-    font-size: 18px;
-  }
-
-  .btn-group {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-
-    .btn-delete {
-      font-size: 24px;
-      margin-left: 0;
-      color: red;
-      cursor: pointer;
-
-      &:hover {
-        background: red;
-        color: #fff;
-        transition: 0.5s;
-      }
-    }
-  }
+.error {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 29px;
+  color: red;
+  text-align: center;
 }
